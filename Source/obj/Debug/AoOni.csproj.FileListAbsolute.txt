@@ -5,3 +5,4 @@ D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Assemblies\AoOni.dll
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Assemblies\AoOni.pdb
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Source\obj\Debug\AoOni.dll
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Source\obj\Debug\AoOni.pdb
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Source\obj\Debug\AoOni.sourcelink.json

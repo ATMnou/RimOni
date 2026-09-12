@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Downside: this creepjoiner is actually a doppelganger -->
+  <CreepJoinerDownsideDef>
+    <defName>AoOniDoppelganger</defName>
+    <label>doppelganger</label>
+    <weight>1</weight>
+    <canOccurRandomly>false</canOccurRandomly>
+    <workerType>AoOni.CreepJoinerWorker_AoOniDownside</workerType>
+  </CreepJoinerDownsideDef>
+
+  <QuestScriptDef ParentName="CreepjoinerArrivalBase">
+    <defName>CreepJoinerArrival_AoOni</defName>
+    <root Class="QuestNode_Sequence">
+      <nodes>
+        <li Class="QuestNode_SetupCreepjoiner">
+          <downside>AoOniDoppelganger</downside>
+          <aggressive>Assault</aggressive>
+          <rejection>AggressiveRejection</rejection>
+
+          <storeFormAs>form</storeFormAs>
+          <storeBenefitAs>benefit</storeBenefitAs>
+          <storeDownsideAs>downside</storeDownsideAs>
+          <storeAggressiveAs>aggressive</storeAggressiveAs>
+          <storeRejectionAs>rejection</storeRejectionAs>
+        </li>
+        <li Class="QuestNode_Root_Creepjoiner_Arrival" />
+      </nodes>
+    </root>
+  </QuestScriptDef>
+
+  <IncidentDef ParentName="AnomalyIncidentBase">
+    <defName>AoOniCreepJoinerJoin</defName>
+    <label>creepjoiner join (doppelganger)</label>
+    <category>Misc</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>IncidentWorker_GiveQuest</workerClass>
+    <questScriptDef>CreepJoinerArrival_AoOni</questScriptDef>
+    <earliestDay>10</earliestDay>
+    <baseChance>0.08</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <requireColonistsPresent>True</requireColonistsPresent>
+    <refireCheckTags>
+      <li>CreepjoinerJoin</li>
+    </refireCheckTags>
+  </IncidentDef>
+
+</Defs>

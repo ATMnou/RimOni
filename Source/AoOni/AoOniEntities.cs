@@ -40,6 +40,22 @@ namespace AoOni
         }
     }
 
+    // Creepjoiner downside: the joiner is secretly a doppelganger.
+    public class CreepJoinerWorker_AoOniDownside : BaseCreepJoinerWorker
+    {
+        public override void OnCreated()
+        {
+            if (base.Pawn == null || base.Pawn.health == null)
+                return;
+            base.Pawn.health.AddHediff(HediffMaker.MakeHediff(HediffDefOf_AoOni.AoOniDoppelganger, base.Pawn));
+            Log.Message("[AoOni] a creepjoiner arrived as a doppelganger");
+        }
+
+        public override void DoResponse(List<TargetInfo> looktargets, List<NamedArgument> namedArgs)
+        {
+        }
+    }
+
     // Oni nucleus: behaves like a fleshmass nucleus, but activates into a monstrous oni.
     public class CompProperties_AoOniNucleus : CompProperties_FleshmassNucleus
     {

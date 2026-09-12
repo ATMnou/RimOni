@@ -16,6 +16,7 @@
     </discoveredResearchProjects>
     <provocationIncidents>
       <li>AoOniRaid</li>
+      <li>AoOniCreepJoinerJoin</li>
     </provocationIncidents>
     <orderInCategory>700</orderInCategory>
   </EntityCodexEntryDef>
