@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOni_BaseOniChance>普通鬼機率(其餘分配給變種)</AoOni_BaseOniChance>
+  <AoOni_MechInfection>允許感染機械體</AoOni_MechInfection>
+  <AoOni_MechInfectionTip>關閉後，機械體不會被鬼感染。</AoOni_MechInfectionTip>
+  <AoOni_DoppelgangerJoin>二重身混入事件</AoOni_DoppelgangerJoin>
+  <AoOni_DoppelgangerJoinTip>當1名(或2名徒手)殖民者從遠行隊歸來時，有20%的機率混入一個二重身。</AoOni_DoppelgangerJoinTip>
+  <AoOni_Transformed>{0}變成了{1}！</AoOni_Transformed>
+  <AoOni_TestPositive>已確認{0}感染了青鬼。無藥可醫……</AoOni_TestPositive>
+  <AoOni_TestNegative>{0}沒有感染。</AoOni_TestNegative>
+  <AoOni_Cured>{0}的青鬼感染已成功清除。</AoOni_Cured>
+</LanguageData>

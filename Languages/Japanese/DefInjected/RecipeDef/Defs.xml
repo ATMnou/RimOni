@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniCure.label>青鬼の治療</AoOniCure.label>
+  <AoOniCure.description>生きた患者から青鬼の感染を取り除く実験的な外科処置。工業用医薬品以上が必要で、ハーブ医薬品では足りない。</AoOniCure.description>
+  <AoOniCure.jobString>対象Aを青鬼の治療中。</AoOniCure.jobString>
+  <AoOniInfectionTest.label>青鬼の感染検査</AoOniInfectionTest.label>
+  <AoOniInfectionTest.description>患者が青鬼に感染しているかを明らかにする外科的検査。</AoOniInfectionTest.description>
+  <AoOniInfectionTest.jobString>対象Aを青鬼の感染検査中。</AoOniInfectionTest.jobString>
+</LanguageData>

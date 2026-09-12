@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== Base ===================== -->
+
+  <ThingDef Abstract="True" Name="AoOni_EntityBase" ParentName="BasePawn">
+    <soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
+    <hideStats>false</hideStats>
+    <statBases>
+      <ComfyTemperatureMin>-40</ComfyTemperatureMin>
+      <ComfyTemperatureMax>70</ComfyTemperatureMax>
+      <PsychicSensitivity>1</PsychicSensitivity>
+      <ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.10</ArmorRating_Heat>
+      <ToxicResistance>0.5</ToxicResistance>
+      <Flammability>0.5</Flammability>
+      <MeatAmount>50</MeatAmount>
+      <LeatherAmount>25</LeatherAmount>
+      <Mass>60</Mass>
+      <PainShockThreshold>1.0</PainShockThreshold>
+      <MinimumContainmentStrength>60</MinimumContainmentStrength>
+      <MeleeDodgeChance>0.08</MeleeDodgeChance>
+    </statBases>
+    <tradeability>None</tradeability>
+    <race>
+      <body>Human</body>
+      <fleshType>EntityFlesh</fleshType>
+      <thinkTreeMain>AoOni</thinkTreeMain>
+      <thinkTreeConstant>AoOniConstant</thinkTreeConstant>
+      <alwaysViolent>true</alwaysViolent>
+      <baseBodySize>4</baseBodySize>
+      <baseHealthScale>2</baseHealthScale>
+      <intelligence>ToolUser</intelligence>
+      <needsRest>false</needsRest>
+      <bloodDef>Filth_DarkBlood</bloodDef>
+      <bleedRateFactor>0.5</bleedRateFactor>
+      <isImmuneToInfections>true</isImmuneToInfections>
+      <specificMeatDef>Meat_Twisted</specificMeatDef>
+      <leatherDef>Leather_Oni</leatherDef>
+      <hasGenders>false</hasGenders>
+      <foodType>None</foodType>
+      <lifeExpectancy>250</lifeExpectancy>
+      <gestationPeriodDays>10</gestationPeriodDays>
+      <soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_SmallScratch_Miss</soundMeleeMiss>
+      <soundMeleeDodge>Pawn_MeleeDodge</soundMeleeDodge>
+      <trainability>None</trainability>
+      <lifeStageAges>
+        <li>
+          <def>EntityFullyFormed</def>
+          <soundCall>Pawn_Gorehulk_Call</soundCall>
+          <soundWounded>Pawn_Gorehulk_Wounded</soundWounded>
+          <soundAttack>Pawn_Gorehulk_Attack</soundAttack>
+        </li>
+      </lifeStageAges>
+      <hediffGiverSets>
+        <li>AnomalyEntity</li>
+      </hediffGiverSets>
+    </race>
+    <comps>
+      <li Class="CompProperties_HoldingPlatformTarget">
+        <baseEscapeIntervalMtbDays>45</baseEscapeIntervalMtbDays>
+      </li>
+      <li Class="CompProperties_AttachPoints">
+        <points>
+          <li>
+            <offset>(-0.7, 0, 0.8)</offset>
+            <type>PlatformRestraint0</type>
+          </li>
+          <li>
+            <offset>(0.7, 0, 0.8)</offset>
+            <type>PlatformRestraint1</type>
+          </li>
+          <li>
+            <offset>(0.7, 0, -0.9)</offset>
+            <type>PlatformRestraint2</type>
+          </li>
+          <li>
+            <offset>(-0.7, 0, -0.9)</offset>
+            <type>PlatformRestraint3</type>
+          </li>
+        </points>
+      </li>
+      <li Class="CompProperties_Studiable">
+        <frequencyTicks>120000</frequencyTicks>
+        <knowledgeCategory>Basic</knowledgeCategory>
+        <minMonolithLevelForStudy>1</minMonolithLevelForStudy>
+        <anomalyKnowledge>2</anomalyKnowledge>
+        <requiresHoldingPlatform>true</requiresHoldingPlatform>
+      </li>
+    </comps>
+    <tools>
+      <li>
+        <label>bite</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>24</power>
+        <cooldownTime>2.0</cooldownTime>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+      <li>
+        <label>claw</label>
+        <capacities>
+          <li>Scratch</li>
+        </capacities>
+        <power>20</power>
+        <cooldownTime>1.5</cooldownTime>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+    </tools>
+  </ThingDef>
+
+  <!-- ===================== Ao Oni ===================== -->
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_AoOni</defName>
+    <uiIconPath>Things/Entity/AoOni_north</uiIconPath>
+    <label>Ao Oni</label>
+    <description>A colossal humanoid with bluish skin and an enormous unblinking head. It moves at a slow, relentless walk, and its bite and claws tear through flesh with terrible ease.\n\nThose wounded by an Ao Oni become infected. Three days later, they become an Oni themselves.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_AoOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <!-- ===================== General variants ===================== -->
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_FourthDimensionOni</defName>
+    <uiIconPath>Things/Entity/4thDimensionOni_north</uiIconPath>
+    <label>4th dimension oni</label>
+    <description>An Oni that slips between dimensions. It periodically teleports right in front of a colonist, then stands still for a few seconds as if confused by its own jump.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_FourthDimensionOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_AmoebaOni</defName>
+    <uiIconPath>Things/Entity/AmoebaOni_north</uiIconPath>
+    <label>amoeba oni</label>
+    <description>An Oni with a wobbling, formless body. It can spew bolts of corrupted flesh at distant prey.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_AmoebaOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <label>oni bolt</label>
+        <defaultProjectile>Projectile_OniBolt</defaultProjectile>
+        <warmupTime>1.5</warmupTime>
+        <range>20</range>
+        <burstShotCount>1</burstShotCount>
+        <requireLineOfSight>true</requireLineOfSight>
+        <onlyManualCast>false</onlyManualCast>
+        <commonality>1</commonality>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_ClownOni</defName>
+    <uiIconPath>Things/Entity/ClownOni_north</uiIconPath>
+    <label>clown oni</label>
+    <description>An Oni wearing a ghastly painted grin. When it falls or is left unchecked, its bloated body becomes a walking bomb.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_ClownOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_EggPlantOni</defName>
+    <uiIconPath>Things/Entity/EggPlantOni_north</uiIconPath>
+    <label>eggplant oni</label>
+    <description>An Oni with the purple sheen of an eggplant. When killed, its body bursts into a pile of raw food.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_EggPlantOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_FlatOni</defName>
+    <uiIconPath>Things/Entity/FlatOni_north</uiIconPath>
+    <label>flat oni</label>
+    <description>An Oni pressed thin as paper. It is incredibly fragile, but its flattened body makes it very hard to hit.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+      <MeleeDodgeChance>0.40</MeleeDodgeChance>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_FlatOni</renderTree>
+      <baseHealthScale>0.5</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_Fuwatty</defName>
+    <uiIconPath>Things/Entity/Fuwatty_north</uiIconPath>
+    <label>fuwatty</label>
+    <description>A soft, fluffy Oni. It drifts forward slowly, then suddenly goes rigid and darts forward in a blinding dash.</description>
+    <statBases>
+      <MoveSpeed>4.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_Fuwatty</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_HunchbackOni</defName>
+    <uiIconPath>Things/Entity/Hunchback_north</uiIconPath>
+    <label>hunchback oni</label>
+    <description>A stooped, frozen Oni. Its body is permanently stiffened by cold; it moves slowly but never stops.</description>
+    <statBases>
+      <MoveSpeed>2.5</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_HunchbackOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_IceOni</defName>
+    <uiIconPath>Things/Entity/IceOni_north</uiIconPath>
+    <label>ice oni</label>
+    <description>An Oni frozen in translucent ice. It is slow, and thrives in freezing temperatures - and when it dies, its frozen shell shatters to reveal a hunchback oni beneath.</description>
+    <statBases>
+      <MoveSpeed>2.5</MoveSpeed>
+      <ComfyTemperatureMin>-150</ComfyTemperatureMin>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_IceOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_InuredOni</defName>
+    <uiIconPath>Things/Entity/InuredOni_north</uiIconPath>
+    <label>inured oni</label>
+    <description>An Oni whose body is slowly falling apart. It sustains new wounds on its own flesh at all times, yet its malice keeps it standing.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_InuredOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_HundredEyeOni</defName>
+    <uiIconPath>Things/Entity/HundredEyeOni_north</uiIconPath>
+    <label>hundred eyes oni</label>
+    <description>A sluggish mass of flesh covered in staring eyes. Hundreds of them. Slow, but almost impossible to bring down.</description>
+    <statBases>
+      <MoveSpeed>1.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_HundredEyeOni</renderTree>
+      <baseHealthScale>12</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_MonstrousOni</defName>
+    <uiIconPath>Things/Entity/MonstrousOni_north</uiIconPath>
+    <label>monstrous oni</label>
+    <description>A horrifying writhing pillar of flesh fused to the ground. It cannot move and cannot be contained, and every so often it spits out a fresh Oni.</description>
+    <statBases>
+      <MoveSpeed>0.1</MoveSpeed>
+      <MinimumContainmentStrength>99999</MinimumContainmentStrength>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_MonstrousOni</renderTree>
+      <baseHealthScale>30</baseHealthScale>
+      <doesntMove>true</doesntMove>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_PlumpyOni</defName>
+    <uiIconPath>Things/Entity/PlumpyOni_north</uiIconPath>
+    <label>plumpy oni</label>
+    <description>A hugely fat Oni. Slower than its kin, but with twice the body to cut through.</description>
+    <statBases>
+      <MoveSpeed>3.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_PlumpyOni</renderTree>
+      <baseHealthScale>4</baseHealthScale>
+      <baseBodySize>5.6</baseBodySize>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_SixArmsOni</defName>
+    <uiIconPath>Things/Entity/PuelIOni_north</uiIconPath>
+    <label>six arms oni</label>
+    <description>An Oni with six arms ending in grasping hands. Its extra limbs make its body heavy and resilient.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_SixArmsOni</renderTree>
+      <baseHealthScale>3</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_SkinnyOni</defName>
+    <uiIconPath>Things/Entity/SkinnyOni_north</uiIconPath>
+    <label>skinny oni</label>
+    <description>A gaunt, skeletal Oni. Its malnutritioned body cannot endure much pain - it collapses at half health.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+      <PainShockThreshold>0.5</PainShockThreshold>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_SkinnyOni</renderTree>
+      <baseHealthScale>1</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_SquattoOni</defName>
+    <uiIconPath>Things/Entity/SquattoOni_north</uiIconPath>
+    <label>squatto oni</label>
+    <description>A hulking squat Oni with crushing arms. Twice as strong as any other Oni in a single blow.</description>
+    <statBases>
+      <MoveSpeed>4.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_SquattoOni</renderTree>
+      <baseHealthScale>5</baseHealthScale>
+      <baseBodySize>5.2</baseBodySize>
+    </race>
+    <tools>
+      <li>
+        <label>bite</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>48</power>
+        <cooldownTime>2.0</cooldownTime>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+      <li>
+        <label>claw</label>
+        <capacities>
+          <li>Scratch</li>
+        </capacities>
+        <power>40</power>
+        <cooldownTime>1.5</cooldownTime>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+    </tools>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_ZombieOni</defName>
+    <uiIconPath>Things/Entity/ZombieOni_north</uiIconPath>
+    <label>zombie oni</label>
+    <description>A rotting Oni that drags itself forward. Its diseased bite infects every victim without fail, and the infection races twice as fast. Cold environments slow it down considerably.</description>
+    <statBases>
+      <MoveSpeed>4.5</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_ZombieOni</renderTree>
+      <baseHealthScale>1.4</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_ThousandsHandOni</defName>
+    <uiIconPath>Things/Entity/ThousandsHandOni_north</uiIconPath>
+    <label>thousands hand oni</label>
+    <description>An Oni covered in countless grasping hands. It is slow and heavy, but its dense mass of flesh makes it very hard to kill.</description>
+    <statBases>
+      <MoveSpeed>2.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_ThousandsHandOni</renderTree>
+      <baseHealthScale>3</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <!-- ===================== Animal variants ===================== -->
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_BatOni</defName>
+    <uiIconPath>Things/Entity/BatOni_north</uiIconPath>
+    <label>bat oni</label>
+    <description>A quick, winged Oni. Its frail body is light as a bat's.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_BatOni</renderTree>
+      <baseHealthScale>1.33</baseHealthScale>
+      <baseBodySize>3.2</baseBodySize>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_BlueShrimp</defName>
+    <uiIconPath>Things/Entity/BlueShrimp_north</uiIconPath>
+    <label>blue shrimp oni</label>
+    <description>An Oni shaped like a shrimp, skittering sideways with surprising speed.</description>
+    <statBases>
+      <MoveSpeed>6.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_BlueShrimp</renderTree>
+      <baseHealthScale>1</baseHealthScale>
+      <baseBodySize>2.8</baseBodySize>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_FlyingOni</defName>
+    <uiIconPath>Things/Entity/FlyingOni_north</uiIconPath>
+    <label>flying oni</label>
+    <description>An Oni that glides above the ground, fast and relentless.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_FlyingOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_JellyfishOni</defName>
+    <uiIconPath>Things/Entity/JellyfishOni_north</uiIconPath>
+    <label>jellyfish oni</label>
+    <description>An Oni draped in a translucent jellyfish-like mantle. Its gelatinous body absorbs shocking amounts of punishment.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_JellyfishOni</renderTree>
+      <baseHealthScale>4</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_SlugOni</defName>
+    <uiIconPath>Things/Entity/SlugOni_north</uiIconPath>
+    <label>slug oni</label>
+    <description>A slimy, slug-like Oni. Blows seem to slide right off its slick body.</description>
+    <statBases>
+      <MoveSpeed>4.0</MoveSpeed>
+      <MeleeDodgeChance>0.35</MeleeDodgeChance>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_SlugOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_SpiderOni</defName>
+    <uiIconPath>Things/Entity/SpiderOni_north</uiIconPath>
+    <label>spider oni</label>
+    <description>An Oni with spindly spider limbs. Every few seconds it spits webbing at the nearest enemy, slowing them to a crawl.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_SpiderOni</renderTree>
+      <baseHealthScale>2</baseHealthScale>
+    </race>
+  </ThingDef>
+
+  <!-- ===================== Mechanoid variant ===================== -->
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_PuppetOni</defName>
+    <uiIconPath>Things/Entity/PuppetOni_north</uiIconPath>
+    <label>puppet oni</label>
+    <description>A mechanoid carcass reanimated and puppeteered by the Oni corruption. Its metal hands strike mechanoids with double force - and its body is extremely tough.</description>
+    <statBases>
+      <MoveSpeed>5.0</MoveSpeed>
+      <ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+    </statBases>
+    <race>
+      <renderTree>AoOniTree_PuppetOni</renderTree>
+      <baseHealthScale>6</baseHealthScale>
+      <fleshType>EntityMechanical</fleshType>
+      <bloodDef IsNull="True"/>
+    </race>
+  </ThingDef>
+
+  <!-- ===================== Oni nucleus (from a killed monstrous oni) ===================== -->
+
+  <ThingDef ParentName="AoOni_EntityBase">
+    <defName>AoOni_Nucleus</defName>
+    <label>oni nucleus</label>
+    <description>The pulsing core left behind by a destroyed monstrous oni. A chaotic lattice of fluid-smeared metal packed with corrupt biology, it constantly grows meat on its surface.\n\nIf left alone, it will activate and grow into a new monstrous oni.</description>
+    <uiIconPath>Things/Entity/MonstrousOniNucleusA</uiIconPath>
+    <race>
+      <body>FleshmassNucleus</body>
+      <renderTree>AoOniTree_Nucleus</renderTree>
+      <thinkTreeMain>FleshmassNucleus</thinkTreeMain>
+      <thinkTreeConstant>FleshmassNucleusConstant</thinkTreeConstant>
+      <baseHealthScale>1</baseHealthScale>
+      <baseBodySize>1</baseBodySize>
+      <fleshType>EntityMechanical</fleshType>
+      <bloodDef IsNull="True"/>
+      <hasMeat>false</hasMeat>
+      <doesntMove>true</doesntMove>
+    </race>
+    <tools Inherit="False" />
+    <comps Inherit="False">
+      <li Class="CompProperties_HoldingPlatformTarget">
+        <baseEscapeIntervalMtbDays>-1</baseEscapeIntervalMtbDays>
+      </li>
+      <li Class="CompProperties_Studiable">
+        <frequencyTicks>120000</frequencyTicks>
+        <knowledgeCategory>Advanced</knowledgeCategory>
+        <minMonolithLevelForStudy>1</minMonolithLevelForStudy>
+        <anomalyKnowledge>3</anomalyKnowledge>
+        <requiresHoldingPlatform>true</requiresHoldingPlatform>
+      </li>
+      <li Class="CompProperties_ProducesBioferrite">
+        <bioferriteDensity>3</bioferriteDensity>
+      </li>
+      <li Class="CompProperties_Pushable">
+        <offsetDistance>0.5</offsetDistance>
+      </li>
+      <li Class="CompProperties_AttachPoints">
+        <points>
+          <li>
+            <offset>(-0.35, 0, 0.35)</offset>
+            <type>PlatformRestraint0</type>
+          </li>
+          <li>
+            <offset>(0.35, 0, 0.35)</offset>
+            <type>PlatformRestraint1</type>
+          </li>
+          <li>
+            <offset>(0.35, 0, -0.35)</offset>
+            <type>PlatformRestraint2</type>
+          </li>
+          <li>
+            <offset>(-0.35, 0, -0.35)</offset>
+            <type>PlatformRestraint3</type>
+          </li>
+        </points>
+      </li>
+      <li Class="CompProperties_Activity">
+        <startingRange>0.2~0.4</startingRange>
+        <changePerDayOutside>0.05</changePerDayOutside>
+        <workerClass>PawnActivityWorker</workerClass>
+        <showLetterOnActivated>true</showLetterOnActivated>
+        <dirtyGraphicsOnActivityChange>true</dirtyGraphicsOnActivityChange>
+        <changePerDamage>0</changePerDamage>
+        <letterDef>ThreatBig</letterDef>
+        <letterTitle>Oni transformation</letterTitle>
+        <letterDesc>The oni nucleus has reached critical activity. It has grown into a monstrous oni!</letterDesc>
+        <activityResearchFactorCurve>
+          <points>
+            <li>0, 0.5</li>
+            <li>0.5, 1</li>
+            <li>0.99, 2</li>
+          </points>
+        </activityResearchFactorCurve>
+      </li>
+      <li Class="AoOni.CompProperties_AoOniNucleus">
+        <activityOnRoofCollapsed>0.4</activityOnRoofCollapsed>
+        <activityMeatPerDayCurve>
+          <points>
+            <li>0.1, 20</li>
+            <li>0.9, 120</li>
+          </points>
+        </activityMeatPerDayCurve>
+      </li>
+    </comps>
+    <killedLeavingsRanges>
+      <Meat_Twisted>100~200</Meat_Twisted>
+      <Shard>2</Shard>
+    </killedLeavingsRanges>
+  </ThingDef>
+
+  <!-- ===================== Oni leather (stats of Odyssey's thrumbomane) ===================== -->
+
+  <ThingDef ParentName="LeatherBase">
+    <defName>Leather_Oni</defName>
+    <label>oni leather</label>
+    <description>The tanned hide of an oni. It is extraordinarily durable and luxurious - one can almost feel a psychic echo of the demon's ancient hunger through the gossamer grain.\n\nIt is used for the highest-quality crafts for its insulation and strength.</description>
+    <graphicData>
+      <texPath>Things/Items/OniLeather</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <color>(255,255,255)</color>
+    </graphicData>
+    <genericMarketSellable>false</genericMarketSellable>
+    <tradeability>Sellable</tradeability>
+    <statBases>
+      <MarketValue>20.0</MarketValue>
+      <StuffPower_Armor_Sharp>2.12</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.4</StuffPower_Armor_Blunt>
+      <StuffPower_Insulation_Cold>36</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>24</StuffPower_Insulation_Heat>
+    </statBases>
+    <stuffProps>
+      <color>(255,255,255)</color>
+      <commonality>0</commonality>
+      <statFactors>
+        <MaxHitPoints>2.2</MaxHitPoints>
+        <Beauty>8</Beauty>
+      </statFactors>
+      <statOffsets>
+        <Beauty>5</Beauty>
+      </statOffsets>
+    </stuffProps>
+  </ThingDef>
+
+</Defs>

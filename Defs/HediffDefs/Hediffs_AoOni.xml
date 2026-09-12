@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Oni infection: transforms the victim after 3 days. Purple 4 hours before. -->
+  <HediffDef Name="AoOniInfectionBase" Abstract="True">
+    <hediffClass>AoOni.Hediff_AoOniInfection</hediffClass>
+    <label>Ao Oni infection</label>
+    <labelNoun>Ao Oni infection</labelNoun>
+    <description>A victim of the Ao Oni's wounds. Something is spreading through the flesh. Three days after infection, the victim becomes an Oni.</description>
+    <defaultLabelColor>(0.55, 0.2, 0.85)</defaultLabelColor>
+    <isBad>true</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <initialSeverity>0.01</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <stages>
+      <li>
+        <label>latent</label>
+      </li>
+      <li>
+        <label>changing</label>
+        <minSeverity>0.95</minSeverity>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="AoOniInfectionBase">
+    <defName>AoOniInfection</defName>
+    <label>Ao Oni infection</label>
+  </HediffDef>
+
+  <!-- Zombie oni infection: 1.5 days -->
+  <HediffDef ParentName="AoOniInfectionBase">
+    <defName>AoOniInfectionZombie</defName>
+    <label>Ao Oni infection (advanced)</label>
+    <description>A fast-advancing variant of the Ao Oni infection, spread by zombie oni. The victim becomes an Oni in half the usual time.</description>
+  </HediffDef>
+
+  <!-- Marker hediff added 4 hours before transformation: turns the victim purple -->
+  <HediffDef>
+    <defName>AoOniChanging</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>changing</label>
+    <description>The Oni infection is in its final stage. The victim's skin has turned purple.</description>
+    <defaultLabelColor>(0.55, 0.2, 0.85)</defaultLabelColor>
+    <isBad>true</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <skinColorOverride>(0.55, 0.2, 0.85)</skinColorOverride>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>changing</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Hidden doppelganger hediff given to colonists returning from caravans -->
+  <HediffDef>
+    <defName>AoOniDoppelganger</defName>
+    <hediffClass>AoOni.Hediff_Doppelganger</hediffClass>
+    <label>doppelganger</label>
+    <description>...</description>
+    <defaultLabelColor>(0.55, 0.2, 0.85)</defaultLabelColor>
+    <isBad>true</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>subtle</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Spider oni web: heavy move speed slow -->
+  <HediffDef>
+    <defName>AoOniWeb</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>oni web</label>
+    <description>Sticky oni webbing slows this creature down.</description>
+    <isBad>true</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>300</disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>webbed</label>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.7</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Fuwatty dash speed burst -->
+  <HediffDef>
+    <defName>AoOniDash</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>dash</label>
+    <description>A burst of speed from the fuwatty's dash.</description>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60</disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>dashing</label>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>1.5</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Zombie oni cold slow -->
+  <HediffDef>
+    <defName>AoOniZombieCold</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>chilled</label>
+    <description>The zombie oni is slowed by freezing temperatures.</description>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>3000</disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>slowed by cold</label>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.5</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniInfection.label>아오오니 감염</AoOniInfection.label>
+  <AoOniInfection.description>아오오니에게 입은 상처로 퍼져가는 무언가. 3일 후 환자는 오니가 된다.</AoOniInfection.description>
+  <AoOniInfectionZombie.label>아오오니 감염(악화)</AoOniInfectionZombie.label>
+  <AoOniInfectionZombie.description>좀비 오니가 퍼뜨리는 급속 감염. 보통 절반의 시간 안에 오니가 된다.</AoOniInfectionZombie.description>
+  <AoOniChanging.label>변화</AoOniChanging.label>
+  <AoOniChanging.description>감염이 마지막 단계에 이르렀다. 피부가 보라색으로 변했다.</AoOniChanging.description>
+  <AoOniWeb.label>오니 거미줄</AoOniWeb.label>
+  <AoOniWeb.description>끈적한 오니 거미줄이 움직임을 방해한다.</AoOniWeb.description>
+  <AoOniDash.label>돌진</AoOniDash.label>
+  <AoOniZombieCold.label>냉기로 느려짐</AoOniZombieCold.label>
+</LanguageData>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOni_AoOni.label>아오오니</AoOni_AoOni.label>
+  <AoOni_AoOni.description>거대한 푸른 살덩이의 인간형 악마. 느리지만 끊임없이 다가오며, 물기와 발톱은 살을 찢어놓는다.
+
+아오오니에게 상처를 입은 생명체는 감염되며, 3일 후 스스로 오니가 된다.</AoOni_AoOni.description>
+  <AoOni_FourthDimensionOni.label>4차원 오니</AoOni_FourthDimensionOni.label>
+  <AoOni_FourthDimensionOni.description>차원을 넘나드는 오니. 주기적으로 정착민 바로 앞으로 순간이동하며, 잠시 자기 자신도 놀란 듯 멈춰 선다.</AoOni_FourthDimensionOni.description>
+  <AoOni_AmoebaOni.label>아메바 오니</AoOni_AmoebaOni.label>
+  <AoOni_AmoebaOni.description>흐물흐물한 형체 없는 몸을 가진 오니. 먼 사냥감을 향해 타락한 살덩이 화살을 뿜어낼 수 있다.</AoOni_AmoebaOni.description>
+  <AoOni_ClownOni.label>광대 오니</AoOni_ClownOni.label>
+  <AoOni_ClownOni.description>섬뜩한 효술로 그려진 웃음을 띤 오니. 쓰러지거나 억제되지 않은 채 방치되면 부푼 몸이 폭탄이 된다.</AoOni_ClownOni.description>
+  <AoOni_EggPlantOni.label>가지 오니</AoOni_EggPlantOni.label>
+  <AoOni_EggPlantOni.description>가지처럼 보라빛이 도는 오니. 처치하면 시체가 무더기의 생식자재로 터져 나온다.</AoOni_EggPlantOni.description>
+  <AoOni_FlatOni.label>납작 오니</AoOni_FlatOni.label>
+  <AoOni_FlatOni.description>종잇장처럼 납작해진 오니. 몹시 연약하지만 납작한 몸 때문에 맞추기가 매우 어렵다.</AoOni_FlatOni.description>
+  <AoOni_Fuwatty.label>자일리톨</AoOni_Fuwatty.label>
+  <AoOni_Fuwatty.description>폭신하고 부드러운 오니. 8칸을 이동하면 1초간 멈췄다가 매우 빠른 속도로 6칸을 직선으로 돌진한다.</AoOni_Fuwatty.description>
+  <AoOni_HunchbackOni.label>허리디스크 오니</AoOni_HunchbackOni.label>
+  <AoOni_HunchbackOni.description>굽은 등의 얼어붙은 오니. 냉기에 영구히 굳은 몸 때문에 느리지만 절대 멈추지 않는다.</AoOni_HunchbackOni.description>
+  <AoOni_IceOni.label>얼음 오니</AoOni_IceOni.label>
+  <AoOni_IceOni.description>투명한 얼음에 갇힌 오니. 느리며 영하의 기온을 좋아한다. 사망하면 얼음 껍질이 깨지고 그 아래에서 허리디스크 오니가 나타난다.</AoOni_IceOni.description>
+  <AoOni_InuredOni.label>부상 오니</AoOni_InuredOni.label>
+  <AoOni_InuredOni.description>몸이 스스로 무너져 가는 오니. 항상 제 살에서 새로운 상처가 생기지만, 그 원한이 몸을 지탱한다.</AoOni_InuredOni.description>
+  <AoOni_HundredEyeOni.label>백개눈 오니</AoOni_HundredEyeOni.label>
+  <AoOni_HundredEyeOni.description>수백 개의 눈이 빽빽하게 박힌 살덩이. 느리지만 쓰러뜨리기 매우 어렵다.</AoOni_HundredEyeOni.description>
+  <AoOni_MonstrousOni.label>기형 오니</AoOni_MonstrousOni.label>
+  <AoOni_MonstrousOni.description>땅에 융합된 끔찍한 살덩이 기둥. 이동도 못 하고 억제도 불가능하며, 주기적으로 새로운 아오오니를 토해낸다.</AoOni_MonstrousOni.description>
+  <AoOni_PlumpyOni.label>뚱오니</AoOni_PlumpyOni.label>
+  <AoOni_PlumpyOni.description>엄청나게 뚱뚱한 오니. 동족보다 느리지만 두 배의 몸을 갈라야 한다.</AoOni_PlumpyOni.description>
+  <AoOni_SixArmsOni.label>육손오니</AoOni_SixArmsOni.label>
+  <AoOni_SixArmsOni.description>여섯 팔이 자라난 오니. 추가된 팔 때문에 몸이 무겁고 질기다.</AoOni_SixArmsOni.description>
+  <AoOni_SkinnyOni.label>멸치 오니</AoOni_SkinnyOni.label>
+  <AoOni_SkinnyOni.description>해골처럼 야윈 오니. 영양 실조에 가까운 몸은 고통에 견디지 못해 체력 절반에서 쓰러진다.</AoOni_SkinnyOni.description>
+  <AoOni_SquattoOni.label>쉐로 오니</AoOni_SquattoOni.label>
+  <AoOni_SquattoOni.description>융기하고 웅크린 거구의 오니. 일격의 위력이 어떤 오니보다도 두 배 강하다.</AoOni_SquattoOni.description>
+  <AoOni_ZombieOni.label>좀비 오니</AoOni_ZombieOni.label>
+  <AoOni_ZombieOni.description>썩은 몸을 끌며 걷는 오니. 병든 물기는 100% 감염을 일으키며 감염 속도도 두 배다. 추운 환경에서는 크게 느려진다.</AoOni_ZombieOni.description>
+  <AoOni_ThousandsHandOni.label>천수 오니</AoOni_ThousandsHandOni.label>
+  <AoOni_ThousandsHandOni.description>무수한 손이 돋아난 오니. 느리고 무겁지만 질긴 살덩이 때문에 죽이기 어렵다.</AoOni_ThousandsHandOni.description>
+  <AoOni_BatOni.label>박쥐 오니</AoOni_BatOni.label>
+  <AoOni_BatOni.description>날개 달린 민첩한 오니. 연약한 몸은 박쥐처럼 가볍다.</AoOni_BatOni.description>
+  <AoOni_BlueShrimp.label>새우 오니</AoOni_BlueShrimp.label>
+  <AoOni_BlueShrimp.description>새우처럼 생긴 오니. 옆으로 스치듯 빠르게 달려든다.</AoOni_BlueShrimp.description>
+  <AoOni_FlyingOni.label>비행 오니</AoOni_FlyingOni.label>
+  <AoOni_FlyingOni.description>지면 위를 미끄러지듯 떠다니며 빠르게 쫓아오는 오니.</AoOni_FlyingOni.description>
+  <AoOni_JellyfishOni.label>해파리 오니</AoOni_JellyfishOni.label>
+  <AoOni_JellyfishOni.description>반투명한 해파리 망토를 뒤집어쓴 오니. 젤리 같은 몸이 어마어마한 타격을 흡수한다.</AoOni_JellyfishOni.description>
+  <AoOni_SlugOni.label>민달팽이 오니</AoOni_SlugOni.label>
+  <AoOni_SlugOni.description>미끌미끌한 달팽이 형태의 오니. 공격이 미끄러운 몸에서 미끄러져 나간다.</AoOni_SlugOni.description>
+  <AoOni_SpiderOni.label>거미 오니</AoOni_SpiderOni.label>
+  <AoOni_SpiderOni.description>가늘고 긴 거미 다리를 가진 오니. 몇 초마다 가장 가까운 적에게 거미줄을 뿜어 느리게 만든다.</AoOni_SpiderOni.description>
+  <AoOni_PuppetOni.label>꼭두각시 오니</AoOni_PuppetOni.label>
+  <AoOni_PuppetOni.description>오니의 부패에 의해 되살아난 메카노이드 잔해. 금속 손이 메카노이드를 상대로 두 배의 위력을 내며, 몸은 극도로 질기다.</AoOni_PuppetOni.description>
+  <AoOni_Nucleus.label>오니 핵</AoOni_Nucleus.label>
+  <AoOni_Nucleus.description>파괴된 기형 오니가 남긴 맥동하는 핵이다. 유동성 금속이 뒤엉킨 카오스 구조로, 표면에는 끊임없이 고기가 자란다.
+
+방치하면 활성화되어 새로운 기형 오니로 자라난다.</AoOni_Nucleus.description>
+  <Leather_Oni.label>오니 가죽</Leather_Oni.label>
+  <Leather_Oni.description>오니의 가죽을 무두질한 것이다. 놀랍도록 질기고 고급스러워, 고운 가죽 결을 통해 악마의 오래된 굶주림이 정신적인 메아리처럼 느껴진다.\n\n보온성과 강도 덕분에 최고 품질의 물건을 만드는 데 쓰인다.</Leather_Oni.description>
+</LanguageData>

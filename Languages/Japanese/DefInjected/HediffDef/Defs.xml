@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniInfection.label>青鬼の感染</AoOniInfection.label>
+  <AoOniInfection.description>青鬼の傷から広がる何か。3日後、患者は鬼になる。</AoOniInfection.description>
+  <AoOniInfectionZombie.label>青鬼の感染(悪化)</AoOniInfectionZombie.label>
+  <AoOniInfectionZombie.description>ゾンビ鬼が広める急速な感染。通常の半分の時間で鬼になる。</AoOniInfectionZombie.description>
+  <AoOniChanging.label>変化</AoOniChanging.label>
+  <AoOniChanging.description>感染が最終段階に達した。皮膚が紫色に変わっている。</AoOniChanging.description>
+  <AoOniWeb.label>鬼の巣</AoOniWeb.label>
+  <AoOniWeb.description>粘着質の鬼の巣が動きを妨げている。</AoOniWeb.description>
+  <AoOniDash.label>ダッシュ</AoOniDash.label>
+  <AoOniDash.description>ふわっちの突進による速度の爆発。</AoOniDash.description>
+  <AoOniZombieCold.label>冷え</AoOniZombieCold.label>
+  <AoOniZombieCold.description>凍える気温のためゾンビ鬼の動きが遅くなっている。</AoOniZombieCold.description>
+</LanguageData>

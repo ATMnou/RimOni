@@ -1,0 +1,7 @@
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Source\obj\Debug\AoOni.csproj.AssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Source\obj\Debug\AoOni.GeneratedMSBuildEditorConfig.editorconfig
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Source\obj\Debug\AoOni.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Assemblies\AoOni.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Assemblies\AoOni.pdb
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Source\obj\Debug\AoOni.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Aooni\Source\obj\Debug\AoOni.pdb

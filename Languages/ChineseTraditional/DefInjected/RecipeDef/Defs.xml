@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniCure.label>青鬼治療</AoOniCure.label>
+  <AoOniCure.description>從活體患者身上清除青鬼感染的實驗性外科手術。需要工業級或更好的藥品，草藥無法勝任。</AoOniCure.description>
+  <AoOniCure.jobString>正在對目標A進行青鬼治療。</AoOniCure.jobString>
+  <AoOniInfectionTest.label>青鬼感染檢查</AoOniInfectionTest.label>
+  <AoOniInfectionTest.description>透過外科檢查確認患者是否感染了青鬼。</AoOniInfectionTest.description>
+  <AoOniInfectionTest.jobString>正在對目標A進行青鬼感染檢查。</AoOniInfectionTest.jobString>
+</LanguageData>

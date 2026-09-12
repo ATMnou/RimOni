@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <PawnKindDef Abstract="True" Name="AoOni_KindBase">
+    <race>AoOni_AoOni</race>
+    <defaultFactionDef>Entities</defaultFactionDef>
+    <immuneToGameConditionEffects>true</immuneToGameConditionEffects>
+    <overrideDebugActionCategory>Entity</overrideDebugActionCategory>
+    <backstoryCryptosleepCommonality>0</backstoryCryptosleepCommonality>
+    <itemQuality>Normal</itemQuality>
+    <apparelMoney>0~0</apparelMoney>
+    <apparelTags />
+    <techHediffsChance>0</techHediffsChance>
+    <gearHealthRange>0~0</gearHealthRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_AoOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/AoOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>Ao Oni</label>
+    <race>AoOni_AoOni</race>
+    <combatPower>150</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_FourthDimensionOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/4thDimensionOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>4th dimension oni</label>
+    <race>AoOni_FourthDimensionOni</race>
+    <combatPower>160</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_AmoebaOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/AmoebaOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>amoeba oni</label>
+    <race>AoOni_AmoebaOni</race>
+    <combatPower>180</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_ClownOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/ClownOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>clown oni</label>
+    <race>AoOni_ClownOni</race>
+    <combatPower>170</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_EggPlantOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/EggPlantOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>eggplant oni</label>
+    <race>AoOni_EggPlantOni</race>
+    <combatPower>150</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_FlatOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/FlatOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>flat oni</label>
+    <race>AoOni_FlatOni</race>
+    <combatPower>90</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_Fuwatty</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/Fuwatty</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>fuwatty</label>
+    <race>AoOni_Fuwatty</race>
+    <combatPower>160</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_HunchbackOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/Hunchback</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>hunchback oni</label>
+    <race>AoOni_HunchbackOni</race>
+    <combatPower>120</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_IceOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/IceOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>ice oni</label>
+    <race>AoOni_IceOni</race>
+    <combatPower>130</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_InuredOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/InuredOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>inured oni</label>
+    <race>AoOni_InuredOni</race>
+    <combatPower>150</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_HundredEyeOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/HundredEyeOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>hundred eyes oni</label>
+    <race>AoOni_HundredEyeOni</race>
+    <combatPower>280</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_MonstrousOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/MonstrousOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>monstrous oni</label>
+    <race>AoOni_MonstrousOni</race>
+    <combatPower>250</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_PlumpyOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/PlumpyOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>plumpy oni</label>
+    <race>AoOni_PlumpyOni</race>
+    <combatPower>220</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_SixArmsOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/PuelIOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>six arms oni</label>
+    <race>AoOni_SixArmsOni</race>
+    <combatPower>180</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_SkinnyOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/SkinnyOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>skinny oni</label>
+    <race>AoOni_SkinnyOni</race>
+    <combatPower>100</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_SquattoOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/SquattoOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>squatto oni</label>
+    <race>AoOni_SquattoOni</race>
+    <combatPower>260</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_ZombieOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/ZombieOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>zombie oni</label>
+    <race>AoOni_ZombieOni</race>
+    <combatPower>130</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_ThousandsHandOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/ThousandsHandOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>thousands hand oni</label>
+    <race>AoOni_ThousandsHandOni</race>
+    <combatPower>220</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_BatOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/BatOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>bat oni</label>
+    <race>AoOni_BatOni</race>
+    <combatPower>100</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_BlueShrimp</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/BlueShrimp</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>blue shrimp oni</label>
+    <race>AoOni_BlueShrimp</race>
+    <combatPower>110</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_FlyingOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/FlyingOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>flying oni</label>
+    <race>AoOni_FlyingOni</race>
+    <combatPower>150</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_JellyfishOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/JellyfishOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>jellyfish oni</label>
+    <race>AoOni_JellyfishOni</race>
+    <combatPower>220</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_SlugOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/SlugOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>slug oni</label>
+    <race>AoOni_SlugOni</race>
+    <combatPower>150</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_SpiderOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/SpiderOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>spider oni</label>
+    <race>AoOni_SpiderOni</race>
+    <combatPower>160</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_PuppetOni</defName>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/PuppetOni</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>4.5</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <label>puppet oni</label>
+    <race>AoOni_PuppetOni</race>
+    <combatPower>260</combatPower>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="AoOni_KindBase">
+    <defName>AoOni_Nucleus</defName>
+    <label>oni nucleus</label>
+    <race>AoOni_Nucleus</race>
+    <canMeleeAttack>false</canMeleeAttack>
+    <hostileToAll>true</hostileToAll>
+    <allowOldAgeInjuries>false</allowOldAgeInjuries>
+    <preventIdeo>true</preventIdeo>
+    <canStrip>false</canStrip>
+    <immuneToTraps>true</immuneToTraps>
+    <collidesWithPawns>false</collidesWithPawns>
+    <ignoresPainShock>true</ignoresPainShock>
+    <useFixedRotation>true</useFixedRotation>
+    <fixedRotation>South</fixedRotation>
+    <combatPower>100</combatPower>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Entity/MonstrousOniNucleus</texPath>
+          <graphicClass>Graphic_ActivityStaged</graphicClass>
+          <drawSize>2</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+  </PawnKindDef>
+
+</Defs>

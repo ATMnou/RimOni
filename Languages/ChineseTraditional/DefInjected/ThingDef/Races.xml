@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOni_AoOni.label>青鬼</AoOni_AoOni.label>
+  <AoOni_AoOni.description>巨大的人形藍色惡魔。行動緩慢卻從不停止，撕咬與利爪能輕易撕裂血肉。
+
+被青鬼所傷的生靈會被感染，三天後便會變成鬼。</AoOni_AoOni.description>
+  <AoOni_FourthDimensionOni.label>四次元鬼</AoOni_FourthDimensionOni.label>
+  <AoOni_FourthDimensionOni.description>能自由穿梭次元的鬼。會週期性地瞬移到殖民者面前，然後彷彿連自己都被嚇到似的僵立數秒。</AoOni_FourthDimensionOni.description>
+  <AoOni_AmoebaOni.label>變形蟲鬼</AoOni_AmoebaOni.label>
+  <AoOni_AmoebaOni.description>擁有軟塌塌不定形身軀的鬼。能向遠處的獵物噴出由腐壞血肉構成的彈體。</AoOni_AmoebaOni.description>
+  <AoOni_ClownOni.label>小丑鬼</AoOni_ClownOni.label>
+  <AoOni_ClownOni.description>畫著詭異笑臉妝的鬼。一旦被擊倒或無人看管，腫脹的身體就會變成炸彈。</AoOni_ClownOni.description>
+  <AoOni_EggPlantOni.label>茄子鬼</AoOni_EggPlantOni.label>
+  <AoOni_EggPlantOni.description>泛著茄子般紫色光澤的鬼。被擊殺時屍體會爆裂成一堆生食。</AoOni_EggPlantOni.description>
+  <AoOni_FlatOni.label>扁平鬼</AoOni_FlatOni.label>
+  <AoOni_FlatOni.description>被壓得像紙一樣薄的鬼。極其脆弱，但扁平的身體讓人很難打中。</AoOni_FlatOni.description>
+  <AoOni_Fuwatty.label>軟綿綿鬼</AoOni_Fuwatty.label>
+  <AoOni_Fuwatty.description>蓬鬆柔軟的鬼。每移動8格就會停頓1秒，然後以極快的速度直線衝刺6格。</AoOni_Fuwatty.description>
+  <AoOni_HunchbackOni.label>駝背鬼</AoOni_HunchbackOni.label>
+  <AoOni_HunchbackOni.description>佝僂著背的凍僵之鬼。因寒氣而永久僵硬的身軀使牠行動緩慢，但絕不停止。</AoOni_HunchbackOni.description>
+  <AoOni_IceOni.label>冰鬼</AoOni_IceOni.label>
+  <AoOni_IceOni.description>被半透明冰層封住的鬼。行動遲緩，酷愛冰點以下的環境。死亡時冰殼碎裂，其下會鑽出駝背鬼。</AoOni_IceOni.description>
+  <AoOni_InuredOni.label>負傷鬼</AoOni_InuredOni.label>
+  <AoOni_InuredOni.description>身體正不斷自行崩壞的鬼。新的傷口源源不斷地出現在血肉上，唯有怨念支撐著牠站立。</AoOni_InuredOni.description>
+  <AoOni_HundredEyeOni.label>百眼鬼</AoOni_HundredEyeOni.label>
+  <AoOni_HundredEyeOni.description>佈滿數百隻眼睛的肉塊。行動遲緩，卻幾乎不可能被擊倒。</AoOni_HundredEyeOni.description>
+  <AoOni_MonstrousOni.label>奇形鬼</AoOni_MonstrousOni.label>
+  <AoOni_MonstrousOni.description>與地面融為一體的恐怖肉柱。無法移動也無法被拘束，還會不時吐出新的青鬼。</AoOni_MonstrousOni.description>
+  <AoOni_PlumpyOni.label>胖鬼</AoOni_PlumpyOni.label>
+  <AoOni_PlumpyOni.description>極度肥胖的鬼。比同類慢，但得切開兩倍的肉。</AoOni_PlumpyOni.description>
+  <AoOni_SixArmsOni.label>六腕鬼</AoOni_SixArmsOni.label>
+  <AoOni_SixArmsOni.description>長著六條手臂的鬼。多餘的肢體讓牠身軀沉重而堅韌。</AoOni_SixArmsOni.description>
+  <AoOni_SkinnyOni.label>瘦鬼</AoOni_SkinnyOni.label>
+  <AoOni_SkinnyOni.description>瘦得皮包骨的鬼。營養不良的身體承受不住痛苦，血量減半便會倒下。</AoOni_SkinnyOni.description>
+  <AoOni_SquattoOni.label>深蹲鬼</AoOni_SquattoOni.label>
+  <AoOni_SquattoOni.description>蹲伏著的巨大身軀之鬼。單次揮擊的力量比任何鬼都要強上一倍。</AoOni_SquattoOni.description>
+  <AoOni_ZombieOni.label>殭屍鬼</AoOni_ZombieOni.label>
+  <AoOni_ZombieOni.description>拖著腐爛身軀行走的鬼。病態的撕咬必定造成感染，且感染速度加倍。寒冷環境會大幅減緩其速度。</AoOni_ZombieOni.description>
+  <AoOni_ThousandsHandOni.label>千手鬼</AoOni_ThousandsHandOni.label>
+  <AoOni_ThousandsHandOni.description>長出無數隻手的鬼。遲緩笨重，但厚實的血肉讓人難以殺死牠。</AoOni_ThousandsHandOni.description>
+  <AoOni_BatOni.label>蝙蝠鬼</AoOni_BatOni.label>
+  <AoOni_BatOni.description>長著翅膀的迅捷之鬼。纖弱的身體如蝙蝠般輕盈。</AoOni_BatOni.description>
+  <AoOni_BlueShrimp.label>藍蝦鬼</AoOni_BlueShrimp.label>
+  <AoOni_BlueShrimp.description>形似蝦子的鬼。橫向滑行，速度快得驚人。</AoOni_BlueShrimp.description>
+  <AoOni_FlyingOni.label>飛行鬼</AoOni_FlyingOni.label>
+  <AoOni_FlyingOni.description>貼著地面滑翔、窮追不捨的鬼。</AoOni_FlyingOni.description>
+  <AoOni_JellyfishOni.label>水母鬼</AoOni_JellyfishOni.label>
+  <AoOni_JellyfishOni.description>披著半透明水母斗篷的鬼。凝膠般的身軀能吸收驚人的打擊。</AoOni_JellyfishOni.description>
+  <AoOni_SlugOni.label>蛞蝓鬼</AoOni_SlugOni.label>
+  <AoOni_SlugOni.description>黏滑如蛞蝓的鬼。攻擊會在牠滑溜的身體上滑開。</AoOni_SlugOni.description>
+  <AoOni_SpiderOni.label>蜘蛛鬼</AoOni_SpiderOni.label>
+  <AoOni_SpiderOni.description>長著細長蜘蛛腿的鬼。每隔數秒向最近的敵人吐網，令其行動遲緩。</AoOni_SpiderOni.description>
+  <AoOni_PuppetOni.label>傀儡鬼</AoOni_PuppetOni.label>
+  <AoOni_PuppetOni.description>被鬼之腐壞重新啟動的機械體殘骸。金屬之爪對機械體造成雙倍傷害，身軀極為堅固。</AoOni_PuppetOni.description>
+  <AoOni_Nucleus.label>鬼之核</AoOni_Nucleus.label>
+  <AoOni_Nucleus.description>被摧毀的奇形鬼留下的搏動之核。混亂的金屬晶格中充斥著扭曲的生物質，表面會不斷長出肉塊。
+
+若放任不管，牠將激活並成長為新的奇形鬼。</AoOni_Nucleus.description>
+  <Leather_Oni.label>鬼皮</Leather_Oni.label>
+  <Leather_Oni.description>鞣製過的鬼皮。異常堅韌奢華，透過細膩的皮革紋理，幾乎能感受到惡魔古老飢餓的靈能回響。\n\n憑藉其保溫性與強度，牠被用於製作最高級的製品。</Leather_Oni.description>
+</LanguageData>

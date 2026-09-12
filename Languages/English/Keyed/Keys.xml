@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOni_BaseOniChance>Base Ao Oni chance (rest split among variants)</AoOni_BaseOniChance>
+  <AoOni_MechInfection>Allow mechanoid infection</AoOni_MechInfection>
+  <AoOni_MechInfectionTip>If disabled, mechanoids cannot be infected.</AoOni_MechInfectionTip>
+  <AoOni_DoppelgangerJoin>Doppelganger join event</AoOni_DoppelgangerJoin>
+  <AoOni_DoppelgangerJoinTip>When a colonist returns from a caravan alone (or as an unarmed pair), there is a 20% chance they are replaced by a doppelganger.</AoOni_DoppelgangerJoinTip>
+  <AoOni_Transformed>{0} has transformed into a {1}!</AoOni_Transformed>
+  <AoOni_TestPositive>{0} is infected with the Ao Oni infection. There is no cure...</AoOni_TestPositive>
+  <AoOni_TestNegative>{0} is not infected.</AoOni_TestNegative>
+  <AoOni_Cured>{0}'s Oni infection has been successfully removed.</AoOni_Cured>
+</LanguageData>

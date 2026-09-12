@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOni_AoOni.label>青鬼</AoOni_AoOni.label>
+  <AoOni_AoOni.description>巨大な青い人型の悪魔。ゆっくりだが絶え間なく迫り、その噛みつきと爪は肉を引き裂く。
+
+青鬼に傷つけられた者は感染し、3日後には自らが鬼になる。</AoOni_AoOni.description>
+  <AoOni_FourthDimensionOni.label>四次元鬼</AoOni_FourthDimensionOni.label>
+  <AoOni_FourthDimensionOni.description>次元を自在に移動する鬼。周期的に入植者の目の前に瞬間移動し、自分でも驚いたように数秒間立ち尽くす。</AoOni_FourthDimensionOni.description>
+  <AoOni_AmoebaOni.label>変形虫鬼</AoOni_AmoebaOni.label>
+  <AoOni_AmoebaOni.description>ぐにゃぐにゃと形の定まらない体を持つ鬼。離れた獲物に向かって歪んだ肉の塊の弾を吐き出す。</AoOni_AmoebaOni.description>
+  <AoOni_ClownOni.label>ピエロ鬼</AoOni_ClownOni.label>
+  <AoOni_ClownOni.description>恐ろしいピエロの化粧をした鬼。倒されたまま放置されると、膨れ上がった体が爆弾と化す。</AoOni_ClownOni.description>
+  <AoOni_EggPlantOni.label>ナス鬼</AoOni_EggPlantOni.label>
+  <AoOni_EggPlantOni.description>ナスのような紫色の光沢を持つ鬼。倒されると死体が生の食料の山となって弾け飛ぶ。</AoOni_EggPlantOni.description>
+  <AoOni_FlatOni.label>ペラ鬼</AoOni_FlatOni.label>
+  <AoOni_FlatOni.description>紙のように薄く押し潰された鬼。あまりに脆いが、薄い体のおかげで攻撃がなかなか当たらない。</AoOni_FlatOni.description>
+  <AoOni_Fuwatty.label>ふわっち</AoOni_Fuwatty.label>
+  <AoOni_Fuwatty.description>ふわふわの柔らかい鬼。8セル移動すると1秒間停止し、その後猛烈な速さで6セルを直線的に突進する。</AoOni_Fuwatty.description>
+  <AoOni_HunchbackOni.label>猫背鬼</AoOni_HunchbackOni.label>
+  <AoOni_HunchbackOni.description>凍りついた背の曲がった鬼。冷気で永久に硬直した体のため遅いが、決して止まらない。</AoOni_HunchbackOni.description>
+  <AoOni_IceOni.label>氷鬼</AoOni_IceOni.label>
+  <AoOni_IceOni.description>半透明の氷に閉じ込められた鬼。動きは遅く、氷点下の環境を好む。死ぬと氷の殻が砕け、その下から猫背鬼が現れる。</AoOni_IceOni.description>
+  <AoOni_InuredOni.label>負傷鬼</AoOni_InuredOni.label>
+  <AoOni_InuredOni.description>自らの体が崩れ続けている鬼。常に新しい傷が自分の肉に生まれるが、その怨念が体を支え続ける。</AoOni_InuredOni.description>
+  <AoOni_HundredEyeOni.label>百目鬼</AoOni_HundredEyeOni.label>
+  <AoOni_HundredEyeOni.description>ぎっしりと並んだ無数の目玉に覆われた肉の塊。鈍重だが、倒すのはほとんど不可能に近い。</AoOni_HundredEyeOni.description>
+  <AoOni_MonstrousOni.label>奇形鬼</AoOni_MonstrousOni.label>
+  <AoOni_MonstrousOni.description>地面に融合した恐ろしい肉の柱。動けず、拘束もできず、ときどき新しい青鬼を吐き出す。</AoOni_MonstrousOni.description>
+  <AoOni_PlumpyOni.label>太っちょ鬼</AoOni_PlumpyOni.label>
+  <AoOni_PlumpyOni.description>とてつもなく太った鬼。同族より遅いが、二倍の体を裂く必要がある。</AoOni_PlumpyOni.description>
+  <AoOni_SixArmsOni.label>六腕鬼</AoOni_SixArmsOni.label>
+  <AoOni_SixArmsOni.description>六本の腕が生えた鬼。余分な腕のせいで体は重く、しぶとい。</AoOni_SixArmsOni.description>
+  <AoOni_SkinnyOni.label>ヤセ鬼</AoOni_SkinnyOni.label>
+  <AoOni_SkinnyOni.description>骨と皮のやせ細った鬼。栄養失調の体は苦痛に耐えられず、体力が半分で倒れ込む。</AoOni_SkinnyOni.description>
+  <AoOni_SquattoOni.label>スクワット鬼</AoOni_SquattoOni.label>
+  <AoOni_SquattoOni.description>しゃがみ込んだ巨体の鬼。一撃の威力は他のどの鬼よりも二倍強い。</AoOni_SquattoOni.description>
+  <AoOni_ZombieOni.label>ゾンビ鬼</AoOni_ZombieOni.label>
+  <AoOni_ZombieOni.description>腐った体を引きずって歩く鬼。病んだ噛みつきは必ず感染を引き起こし、感染速度も二倍。寒冷な環境では大幅に遅くなる。</AoOni_ZombieOni.description>
+  <AoOni_ThousandsHandOni.label>千手鬼</AoOni_ThousandsHandOni.label>
+  <AoOni_ThousandsHandOni.description>無数の手が生え出した鬼。鈍重だが、分厚い肉の塊ゆえに殺すのは難しい。</AoOni_ThousandsHandOni.description>
+  <AoOni_BatOni.label>コウモリ鬼</AoOni_BatOni.label>
+  <AoOni_BatOni.description>翼のある素早い鬼。その華奢な体はコウモリのように軽い。</AoOni_BatOni.description>
+  <AoOni_BlueShrimp.label>ブルーシュリンプ鬼</AoOni_BlueShrimp.label>
+  <AoOni_BlueShrimp.description>エビのような形の鬼。横にすり抜けるように驚くほど速く駆ける。</AoOni_BlueShrimp.description>
+  <AoOni_FlyingOni.label>飛行鬼</AoOni_FlyingOni.label>
+  <AoOni_FlyingOni.description>地面すれすれを滑空し、執拗に追い立てる鬼。</AoOni_FlyingOni.description>
+  <AoOni_JellyfishOni.label>クラゲ鬼</AoOni_JellyfishOni.label>
+  <AoOni_JellyfishOni.description>半透明のクラゲのような外套をまとった鬼。ゼリー状の体が驚くほどの衝撃を吸収する。</AoOni_JellyfishOni.description>
+  <AoOni_SlugOni.label>ナメクジ鬼</AoOni_SlugOni.label>
+  <AoOni_SlugOni.description>ぬるぬるのナメクジのような鬼。攻撃はその滑らかな体を滑り落ちていく。</AoOni_SlugOni.description>
+  <AoOni_SpiderOni.label>クモ鬼</AoOni_SpiderOni.label>
+  <AoOni_SpiderOni.description>細長いクモの足を持つ鬼。数秒おきに最も近い敵に網を吐き、動きを封じる。</AoOni_SpiderOni.description>
+  <AoOni_PuppetOni.label>操り人形鬼</AoOni_PuppetOni.label>
+  <AoOni_PuppetOni.description>鬼の腐敗によって再起動されたメカノイドの残骸。金属の手はメカノイドに対して二倍の力を発揮し、その体は極めて頑丈だ。</AoOni_PuppetOni.description>
+  <AoOni_Nucleus.label>鬼の核</AoOni_Nucleus.label>
+  <AoOni_Nucleus.description>破壊された奇形鬼が残した脈打つ核。 fluid-smeared metalのカオスな構造で、表面には絶えず肉が成長する。
+
+放置すると活性化し、新しい奇形鬼へと成長する。</AoOni_Nucleus.description>
+  <Leather_Oni.label>鬼の革</Leather_Oni.label>
+  <Leather_Oni.description>鬼の皮をなめしたもの。驚くほど頑丈で豪華であり、細やかな革目からは悪魔の古の飢えが霊的な反響のように感じられる。\n\n保温性と強度により、最高品質の工芸品に使われる。</Leather_Oni.description>
+</LanguageData>

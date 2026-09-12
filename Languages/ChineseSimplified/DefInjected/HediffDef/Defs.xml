@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniInfection.label>青鬼感染</AoOniInfection.label>
+  <AoOniInfection.description>自青鬼伤口蔓延开来的某种东西。三天后，患者将变成鬼。</AoOniInfection.description>
+  <AoOniInfectionZombie.label>青鬼感染(恶化)</AoOniInfectionZombie.label>
+  <AoOniInfectionZombie.description>僵尸鬼散播的急速感染。只需一半时间患者就会变成鬼。</AoOniInfectionZombie.description>
+  <AoOniChanging.label>变化</AoOniChanging.label>
+  <AoOniChanging.description>感染已进入最后阶段。皮肤变成了紫色。</AoOniChanging.description>
+  <AoOniWeb.label>鬼网</AoOniWeb.label>
+  <AoOniWeb.description>黏糊糊的鬼网阻碍了行动。</AoOniWeb.description>
+  <AoOniDash.label>冲刺</AoOniDash.label>
+  <AoOniDash.description>软绵绵鬼冲刺带来的速度爆发。</AoOniDash.description>
+  <AoOniZombieCold.label>受寒</AoOniZombieCold.label>
+  <AoOniZombieCold.description>冰点以下的气温使僵尸鬼的行动变得迟缓。</AoOniZombieCold.description>
+</LanguageData>

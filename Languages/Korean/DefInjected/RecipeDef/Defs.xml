@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniInfectionTest.label>아오오니 감염 검사</AoOniInfectionTest.label>
+  <AoOniInfectionTest.description>아오오니 감염 여부를 밝히는 외과 검사.</AoOniInfectionTest.description>
+  <AoOniInfectionTest.jobString>대상 A에 아오오니 감염 검사 중.</AoOniInfectionTest.jobString>
+  <AoOniCure.label>아오오니 치료</AoOniCure.label>
+  <AoOniCure.description>살아있는 환자에서 아오오니 감염을 제거하는 실험적 외과 시술. 생약으로는 부족하며 공업 의약품 이상이 필요합니다.</AoOniCure.description>
+  <AoOniCure.jobString>대상 A에 아오오니 치료 중.</AoOniCure.jobString>
+</LanguageData>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <packageId>ATMnou.aooni</packageId>
+  <name>RimOni</name>
+  <author>ATMnou</author>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <modVersion>1.0.0</modVersion>
+  <modDependencies>
+    <li>
+      <packageId>Ludeon.RimWorld.Anomaly</packageId>
+      <displayName>Anomaly</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3025980190</steamWorkshopUrl>
+    </li>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+    <li>Ludeon.RimWorld.Anomaly</li>
+  </loadAfter>
+  <description>Ao Oni mod for RimWorld. The blue demon from the classic horror game stalks your colony. Colonists, animals and even mechanoids wounded by an Oni become infected - and three days later, they change.\n\nRequires the Anomaly DLC and the Harmony library mod.</description>
+</ModMetaData>

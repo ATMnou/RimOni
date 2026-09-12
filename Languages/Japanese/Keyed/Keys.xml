@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOni_BaseOniChance>基本の鬼の確率(残りは変種に分配)</AoOni_BaseOniChance>
+  <AoOni_MechInfection>メカノイドへの感染を許可</AoOni_MechInfection>
+  <AoOni_MechInfectionTip>オフにするとメカノイドは鬼に感染しません。</AoOni_MechInfectionTip>
+  <AoOni_DoppelgangerJoin>ドッペルゲンガー合流イベント</AoOni_DoppelgangerJoin>
+  <AoOni_DoppelgangerJoinTip>1人(または非武装2人)の入植者がキャラバンから戻る際、20%の確率でドッペルゲンガーが紛れ込みます。</AoOni_DoppelgangerJoinTip>
+  <AoOni_Transformed>{0}が{1}に変わり果てた！</AoOni_Transformed>
+  <AoOni_TestPositive>{0}の青鬼感染が確認されました。治療法はありません...</AoOni_TestPositive>
+  <AoOni_TestNegative>{0}は感染していません。</AoOni_TestNegative>
+  <AoOni_Cured>{0}の青鬼感染は正常に除去されました。</AoOni_Cured>
+</LanguageData>

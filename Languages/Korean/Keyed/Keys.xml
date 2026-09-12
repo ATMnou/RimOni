@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOni_BaseOniChance>기본 오니 확률 (나머지는 변종에 분배)</AoOni_BaseOniChance>
+  <AoOni_MechInfection>메카노이드 감염 허용</AoOni_MechInfection>
+  <AoOni_MechInfectionTip>끄면 메카노이드는 오니에게 감염되지 않습니다.</AoOni_MechInfectionTip>
+  <AoOni_DoppelgangerJoin>도플갱어 합류 이벤트</AoOni_DoppelgangerJoin>
+  <AoOni_DoppelgangerJoinTip>1명(또는 비무장 2명)이 원정에서 돌아올 때 20% 확률로 도플갱어가 섞여 들어옵니다.</AoOni_DoppelgangerJoinTip>
+  <AoOni_Transformed>{0}(이)가 {1}(으)로 변했습니다!</AoOni_Transformed>
+  <AoOni_TestPositive>{0}의 아오오니 감염이 확인되었습니다. 치료법은 없습니다...</AoOni_TestPositive>
+  <AoOni_TestNegative>{0}은(는) 감염되지 않았습니다.</AoOni_TestNegative>
+  <AoOni_Cured>{0}의 아오오니 감염이 성공적으로 제거되었습니다.</AoOni_Cured>
+</LanguageData>

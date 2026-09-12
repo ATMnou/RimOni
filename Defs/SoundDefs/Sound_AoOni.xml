@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <SoundDef>
+    <defName>AoOni_HorrorMusic</defName>
+    <context>MapOnly</context>
+    <sustain>true</sustain>
+    <maxVoices>1</maxVoices>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Music/horror-b</clipPath>
+          </li>
+        </grains>
+        <volumeRange>55~60</volumeRange>
+        <distRange>0~100000</distRange>
+        <sustainLoop>true</sustainLoop>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+</Defs>

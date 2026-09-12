@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <DamageDef Name="AoOniBolt">
+    <defName>OniBolt</defName>
+    <label>oni bolt</label>
+    <isRanged>true</isRanged>
+    <armorCategory>Sharp</armorCategory>
+    <hediff>Cut</hediff>
+    <hediffSolid>Crush</hediffSolid>
+  </DamageDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Projectile_OniBolt</defName>
+    <label>oni bolt</label>
+    <graphicData>
+      <texPath>Things/Projectile/OniBolt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <projectile>
+      <damageDef>OniBolt</damageDef>
+      <damageAmountBase>15</damageAmountBase>
+      <armorPenetrationBase>0.3</armorPenetrationBase>
+      <speed>60</speed>
+      <stoppingPower>0.5</stoppingPower>
+    </projectile>
+  </ThingDef>
+
+</Defs>

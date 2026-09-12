@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniInfectionTest.label>青鬼感染检查</AoOniInfectionTest.label>
+  <AoOniInfectionTest.description>通过外科检查确认患者是否感染了青鬼。</AoOniInfectionTest.description>
+  <AoOniInfectionTest.jobString>正在对目标A进行青鬼感染检查。</AoOniInfectionTest.jobString>
+  <AoOniInfectionCure.label>青鬼治疗</AoOniInfectionCure.label>
+  <AoOniInfectionCure.description>对鬼感染的高阶实体研究。解锁在感染完全发作前将感染从患者身上清除的外科手术。需要工业级或更好的药品，草药无法胜任。机械体可通过维修清除感染。</AoOniInfectionCure.description>
+</LanguageData>

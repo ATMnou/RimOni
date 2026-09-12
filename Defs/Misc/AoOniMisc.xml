@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <EntityCodexEntryDef>
+    <defName>AoOni</defName>
+    <label>Ao Oni</label>
+    <description>A colossal blue demon that stalks the rim. Its victims become infected, and three days later become Oni themselves. All Oni variants share the same dread: the infection is incurable.</description>
+    <category>Basic</category>
+    <uiIconPath>Things/Entity/AoOni_north</uiIconPath>
+    <discoveryType>BecameVisible</discoveryType>
+    <linkedThings>
+      <li>AoOni_AoOni</li>
+    </linkedThings>
+    <discoveredResearchProjects>
+      <li>AoOniInfectionTest</li>
+    </discoveredResearchProjects>
+    <provocationIncidents>
+      <li>AoOniRaid</li>
+    </provocationIncidents>
+    <orderInCategory>700</orderInCategory>
+  </EntityCodexEntryDef>
+
+  <ResearchProjectDef>
+    <defName>AoOniInfectionTest</defName>
+    <label>Ao Oni infection test</label>
+    <description>An entity study of the Ao Oni's infection mechanism. Unlocks a surgical test that reveals whether a person, animal or mechanoid is carrying an Oni infection.</description>
+    <tab>Anomaly</tab>
+    <knowledgeCost>10</knowledgeCost>
+    <knowledgeCategory>Basic</knowledgeCategory>
+    <researchViewX>4.00</researchViewX>
+    <researchViewY>6.40</researchViewY>
+  </ResearchProjectDef>
+
+  <RecipeDef>
+    <defName>AoOniInfectionTest</defName>
+    <label>Ao Oni infection test</label>
+    <description>A surgical examination that reveals whether the patient is infected by an Ao Oni.</description>
+    <workerClass>AoOni.RecipeWorker_AoOniTest</workerClass>
+    <jobString>Ao Oni infection test on TargetA.</jobString>
+    <workAmount>2000</workAmount>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <targetsBodyPart>false</targetsBodyPart>
+    <isViolation>true</isViolation>
+    <anesthetize>true</anesthetize>
+    <surgeryOutcomeEffect IsNull="True" />
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>4</Medicine>
+    </skillRequirements>
+    <researchPrerequisite>
+      <li>AoOniInfectionTest</li>
+    </researchPrerequisite>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+  </RecipeDef>
+
+  <IncidentDef ParentName="AnomalyIncidentBase">
+    <defName>AoOniRaid</defName>
+    <label>oni attack</label>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>AoOni.IncidentWorker_AoOniRaid</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>6</earliestDay>
+    <category>ThreatSmall</category>
+    <letterDef>ThreatBig</letterDef>
+    <tale>Raid</tale>
+    <letterLabel>Oni attack</letterLabel>
+    <letterText>An Oni has appeared and is hunting your colonists! Its wounds infect - anyone wounded by it will become an Oni in three days. Prepare to defend.</letterText>
+  </IncidentDef>
+
+
+  <ResearchProjectDef>
+    <defName>AoOniInfectionCure</defName>
+    <label>Ao Oni cure</label>
+    <description>An advanced entity study of the Oni infection. Unlocks a surgical procedure that removes an Oni infection from a living patient before it fully takes hold. Industrial medicine or better is required - herbal medicine is not enough. Mechanoids can purge the infection by being repaired.</description>
+    <tab>Anomaly</tab>
+    <prerequisites>
+      <li>AoOniInfectionTest</li>
+    </prerequisites>
+    <knowledgeCost>20</knowledgeCost>
+    <knowledgeCategory>Basic</knowledgeCategory>
+    <researchViewX>5.00</researchViewX>
+    <researchViewY>6.40</researchViewY>
+  </ResearchProjectDef>
+
+  <RecipeDef>
+    <defName>AoOniCure</defName>
+    <label>Ao Oni cure</label>
+    <description>An experimental surgical procedure that purges an Oni infection from a living patient. Industrial medicine or better is required; herbal medicine cannot provide what the procedure needs.</description>
+    <workerClass>AoOni.RecipeWorker_AoOniCure</workerClass>
+    <jobString>Ao Oni cure on TargetA.</jobString>
+    <workAmount>3000</workAmount>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <targetsBodyPart>false</targetsBodyPart>
+    <isViolation>true</isViolation>
+    <anesthetize>true</anesthetize>
+    <surgeryOutcomeEffect IsNull="True" />
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>8</Medicine>
+    </skillRequirements>
+    <researchPrerequisite>
+      <li>AoOniInfectionCure</li>
+    </researchPrerequisite>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineIndustrial</li>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineIndustrial</li>
+        <li>MedicineUltratech</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+  </RecipeDef>
+
+</Defs>
