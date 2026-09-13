@@ -30,6 +30,17 @@ namespace AoOni
             else if (doppel != null)
             {
                 doppel.Diagnosed = true;
+
+                // A diagnosed doppelganger develops its own oni infection (1.5 days) - not hidden
+                var zombieDef = DefDatabase<HediffDef>.GetNamed("AoOniInfectionZombie", false);
+                if (zombieDef != null && Oni.GetInfection(pawn) == null)
+                {
+                    var inf = (Hediff_AoOniInfection)HediffMaker.MakeHediff(zombieDef, pawn);
+                    inf.Diagnosed = true;
+                    pawn.health.AddHediff(inf);
+                    Log.Message("[AoOni] diagnosed doppelganger " + pawn.LabelShortCap + " has developed an oni infection");
+                }
+
                 Messages.Message("AoOni_TestPositive".Translate(pawn.LabelShortCap),
                     pawn, MessageTypeDefOf.ThreatBig, true);
             }
@@ -217,6 +228,17 @@ namespace AoOni
         {
             if (pawn == null || pawn.Dead)
                 return;
+
+            // A doppelganger cannot be cured - attempting it reveals its true form at once
+            if (Oni.GetDoppelganger(pawn) != null)
+            {
+                Find.LetterStack.ReceiveLetter(
+                    "AoOni_ReconstitutionFailLabel".Translate(),
+                    "AoOni_CureDoppelganger".Translate(pawn.Named("PAWN")),
+                    LetterDefOf.ThreatBig, pawn);
+                Transformer.TransformPawn(pawn);
+                return;
+            }
 
             var infection = Oni.GetInfection(pawn);
             if (infection == null)

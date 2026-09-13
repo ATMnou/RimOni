@@ -272,16 +272,39 @@ namespace AoOni
         // thingIDNumbers of meals cooked by doppelgangers
         public static HashSet<int> taintedThings = new HashSet<int>();
 
+        private bool medfordWarned;
+
+        // Medford mode compatibility warning (once per save)
+        private static bool IsMedfordInstalled()
+        {
+            foreach (var m in ModLister.AllInstalledMods)
+            {
+                if (m.FolderName == "2153065191" ||
+                    (m.RootDir != null && m.RootDir.FullName.Contains("2153065191")))
+                    return true;
+            }
+            return false;
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Collections.Look(ref taintedThings, "taintedThings", LookMode.Value);
             if (taintedThings == null)
                 taintedThings = new HashSet<int>();
+            Scribe_Values.Look(ref medfordWarned, "medfordWarned", false);
         }
 
         public override void GameComponentTick()
         {
+            if (!medfordWarned && Current.ProgramState == ProgramState.Playing && IsMedfordInstalled())
+            {
+                medfordWarned = true;
+                Find.WindowStack.Add(new Dialog_MessageBox(
+                    "메드포드 모드는 RimOni의 재미를 크게 떨어뜨릴 수 있습니다.\n\n이 메세지 이외에 별다른 불이익은 없으나 사용을 권장하지 않습니다.",
+                    "확인", null, null, null, "RimOni - 호환성 경고"));
+            }
+
             ticks++;
             ticksStatic = ticks;
             if (ticks % 30 == 0)
@@ -328,7 +351,10 @@ namespace AoOni
                     }
 
                     var doppel = pawn.health?.hediffSet?.GetFirstHediffOfDef(HediffDefOf_AoOni.AoOniDoppelganger) as Hediff_Doppelganger;
-                    if (doppel != null && !pawn.Destroyed && (pawn.Downed || (pawn.needs?.mood != null && pawn.needs.mood.CurLevel <= 0.10f)))
+                    // Transform on low mood, or when about to die from blood loss -
+                    // anesthesia and other incapacitation do NOT trigger it
+                    bool bleedingOut = pawn.Downed && pawn.health.hediffSet.BleedRateTotal > 0.3f;
+                    if (doppel != null && !pawn.Destroyed && (bleedingOut || (pawn.needs?.mood != null && pawn.needs.mood.CurLevel <= 0.10f)))
                         Transformer.TransformPawn(pawn);
 
                     // Zombie oni slows down in freezing temperatures

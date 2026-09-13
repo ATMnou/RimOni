@@ -130,6 +130,30 @@ namespace AoOni
                     return;
                 killCtx.Remove(__instance);
 
+                // A doppelganger killed outright (without transforming) bursts into an oni
+                if (__instance.health?.hediffSet?.GetFirstHediffOfDef(HediffDefOf_AoOni.AoOniDoppelganger) != null)
+                {
+                    Map dmap = ctx.map;
+                    if (dmap != null && !dmap.Disposed)
+                    {
+                        foreach (Thing t in dmap.thingGrid.ThingsAt(ctx.cell))
+                        {
+                            if (t is Corpse corpse && corpse.InnerPawn == __instance)
+                            {
+                                corpse.Destroy(DestroyMode.Vanish);
+                                break;
+                            }
+                        }
+                        Transformer.SpawnOni(dmap, ctx.cell, "AoOni_AoOni", 1);
+                        Find.LetterStack.ReceiveLetter(
+                            "AoOni_ReconstitutionFailLabel".Translate(),
+                            "AoOni_DoppelDeath".Translate(__instance.Named("PAWN")),
+                            LetterDefOf.ThreatBig, new LookTargets(ctx.cell, dmap));
+                        Log.Message("[AoOni] a slain doppelganger revealed its true form");
+                    }
+                    return;
+                }
+
                 if (!Oni.IsOni(__instance))
                     return;
                 Map map = ctx.map;

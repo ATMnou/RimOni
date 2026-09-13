@@ -18,4 +18,6 @@
   <AoOni_ReconstitutionFailLabel>재구성 실패</AoOni_ReconstitutionFailLabel>
   <AoOni_ReconstitutionFail>{PAWN_nameDef}은(는) 공허의 검증을 견디지 못했습니다.</AoOni_ReconstitutionFail>
   <AoOni_ReconstitutionDoppelgangerFail>{PAWN_nameDef}은(는) 원래 인간이 아니었습니다. 위조가 벗겨져 나갑니다!</AoOni_ReconstitutionDoppelgangerFail>
+  <AoOni_CureDoppelganger>{PAWN_nameDef}은(는) 원래 인간이 아니었습니다. 치료를 시도하자 본체가 드러납니다!</AoOni_CureDoppelganger>
+  <AoOni_DoppelDeath>{PAWN_nameDef}의 시체가 부서지고, 그 자리에서 오니가 일어났습니다!</AoOni_DoppelDeath>
 </LanguageData>

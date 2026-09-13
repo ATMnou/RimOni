@@ -18,4 +18,6 @@
   <AoOni_ReconstitutionFailLabel>重构失败</AoOni_ReconstitutionFailLabel>
   <AoOni_ReconstitutionFail>{PAWN_nameDef}没能承受住虚空的检验。</AoOni_ReconstitutionFail>
   <AoOni_ReconstitutionDoppelgangerFail>{PAWN_nameDef}从来都不是人类。伪装崩解了！</AoOni_ReconstitutionDoppelgangerFail>
+  <AoOni_CureDoppelganger>{PAWN_nameDef}从来都不是人类。治疗一尝试，本体便现形了！</AoOni_CureDoppelganger>
+  <AoOni_DoppelDeath>{PAWN_nameDef}的尸体崩碎了，一只鬼从原地站了起来！</AoOni_DoppelDeath>
 </LanguageData>
