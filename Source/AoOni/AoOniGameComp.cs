@@ -301,8 +301,8 @@ namespace AoOni
             {
                 medfordWarned = true;
                 Find.WindowStack.Add(new Dialog_MessageBox(
-                    "메드포드 모드는 RimOni의 재미를 크게 떨어뜨릴 수 있습니다.\n\n이 메세지 이외에 별다른 불이익은 없으나 사용을 권장하지 않습니다.",
-                    "확인", null, null, null, "RimOni - 호환성 경고"));
+                    "MedPod 모드는 RimOni의 재미를 크게 떨어뜨릴 수 있습니다.\n\n이 메세지 이외에 별다른 불이익은 없으나 사용을 권장하지 않습니다.",
+                    "확인", null, null, null, "RimOni - MedPod 호환성 경고"));
             }
 
             ticks++;
