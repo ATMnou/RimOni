@@ -12,4 +12,12 @@
   <AoOniDash.description>ふわっちの突進による速度の爆発。</AoOniDash.description>
   <AoOniZombieCold.label>冷え</AoOniZombieCold.label>
   <AoOniZombieCold.description>凍える気温のためゾンビ鬼の動きが遅くなっている。</AoOniZombieCold.description>
+  <AoOniBerryGas.label>ブルーベリーガス曝露</AoOniBerryGas.label>
+  <AoOniBerryGas.description>瀕死の太っちょ鬼が放つ甘い紫色のガスによる後遺症。目を曇らせ、肺を焦がす。深刻な曝露は、鬼の感染につながる可能性がある。
+
+ガスに曝露されなければ、徐々に薄れていく。</AoOniBerryGas.description>
+  <AoOniBerryGas.stages.0.label>微か</AoOniBerryGas.stages.0.label>
+  <AoOniBerryGas.stages.1.label>曝露</AoOniBerryGas.stages.1.label>
+  <AoOniInfectionFast.label>青鬼の感染(狂乱)</AoOniInfectionFast.label>
+  <AoOniInfectionFast.description>コウモリ鬼の噛みつきで移される狂乱の感染。被害者は数時間以内に鬼になる。</AoOniInfectionFast.description>
 </LanguageData>

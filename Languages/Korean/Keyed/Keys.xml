@@ -9,4 +9,8 @@
   <AoOni_TestPositive>{0}의 아오오니 감염이 확인되었습니다. 치료법은 없습니다...</AoOni_TestPositive>
   <AoOni_TestNegative>{0}은(는) 감염되지 않았습니다.</AoOni_TestNegative>
   <AoOni_Cured>{0}의 아오오니 감염이 성공적으로 제거되었습니다.</AoOni_Cured>
+  <AoOni_FishingLetterLabel>낚싯줄에 걸린 것</AoOni_FishingLetterLabel>
+  <AoOni_FishingLetter>{PAWN_nameDef}(이)가 낚시 중에 무언가를 낚았습니다 - 물속에서 보라색 무언가가 솟아올랐습니다!
+
+오니가 몇 초간 얼어 있습니다. 도망칠 기회입니다.</AoOni_FishingLetter>
 </LanguageData>

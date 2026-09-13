@@ -12,4 +12,12 @@
   <AoOniDash.description>软绵绵鬼冲刺带来的速度爆发。</AoOniDash.description>
   <AoOniZombieCold.label>受寒</AoOniZombieCold.label>
   <AoOniZombieCold.description>冰点以下的气温使僵尸鬼的行动变得迟缓。</AoOniZombieCold.description>
+  <AoOniBerryGas.label>蓝莓气体暴露</AoOniBerryGas.label>
+  <AoOniBerryGas.description>濒死的胖鬼释放的甜腻紫色气体造成的后遗症。它会模糊视线并灼烧肺部。严重暴露有一定概率导致鬼化感染。
+
+脱离气体后，效果会缓慢消退。</AoOniBerryGas.description>
+  <AoOniBerryGas.stages.0.label>轻微</AoOniBerryGas.stages.0.label>
+  <AoOniBerryGas.stages.1.label>暴露</AoOniBerryGas.stages.1.label>
+  <AoOniInfectionFast.label>青鬼感染(狂暴)</AoOniInfectionFast.label>
+  <AoOniInfectionFast.description>由蝙蝠鬼的撕咬传播的狂暴感染。受害者会在几小时内变成鬼。</AoOniInfectionFast.description>
 </LanguageData>

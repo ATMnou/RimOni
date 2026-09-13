@@ -9,4 +9,8 @@
   <AoOni_TestPositive>已確認{0}感染了青鬼。無藥可醫……</AoOni_TestPositive>
   <AoOni_TestNegative>{0}沒有感染。</AoOni_TestNegative>
   <AoOni_Cured>{0}的青鬼感染已成功清除。</AoOni_Cured>
+  <AoOni_FishingLetterLabel>釣上來的東西</AoOni_FishingLetterLabel>
+  <AoOni_FishingLetter>{PAWN_nameDef}釣魚時釣到了什麼——水中躥出了一個紫色身影！
+
+鬼僵直了幾秒鐘。快趁機逃跑。</AoOni_FishingLetter>
 </LanguageData>

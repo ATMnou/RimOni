@@ -10,4 +10,12 @@
   <AoOniWeb.description>끈적한 오니 거미줄이 움직임을 방해한다.</AoOniWeb.description>
   <AoOniDash.label>돌진</AoOniDash.label>
   <AoOniZombieCold.label>냉기로 느려짐</AoOniZombieCold.label>
+  <AoOniBerryGas.label>블루베리 가스 노출</AoOniBerryGas.label>
+  <AoOniBerryGas.description>죽어가는 뚱오니가 내뿜는 달콤한 보라색 가스에 노출된 후유증이다. 눈을 흐리게 하고 폐를 태운다. 심각한 노출은 가스 자체가 악마의 씨앗을 품고 있었던 것처럼 오니 감염으로 이어질 확률이 있다.
+
+가스에 노출되지 않으면 서서히 사라진다.</AoOniBerryGas.description>
+  <AoOniBerryGas.stages.0.label>기미</AoOniBerryGas.stages.0.label>
+  <AoOniBerryGas.stages.1.label>노출</AoOniBerryGas.stages.1.label>
+  <AoOniInfectionFast.label>아오오니 감염(광란)</AoOniInfectionFast.label>
+  <AoOniInfectionFast.description>박쥐 오니의 물기로 옮겨지는 광란의 감염. 피해자는 몇 시간 안에 오니가 된다.</AoOniInfectionFast.description>
 </LanguageData>

@@ -9,4 +9,8 @@
   <AoOni_TestPositive>{0}の青鬼感染が確認されました。治療法はありません...</AoOni_TestPositive>
   <AoOni_TestNegative>{0}は感染していません。</AoOni_TestNegative>
   <AoOni_Cured>{0}の青鬼感染は正常に除去されました。</AoOni_Cured>
+  <AoOni_FishingLetterLabel>釣り針に掛かったもの</AoOni_FishingLetterLabel>
+  <AoOni_FishingLetter>{PAWN_nameDef}が釣り中に何かを釣り上げた - 水中から紫色の何かが飛び出した！
+
+鬼は数秒間硬直している。逃げるチャンスだ。</AoOni_FishingLetter>
 </LanguageData>

@@ -124,7 +124,17 @@ namespace AoOni
             set => diagnosed = true;
         }
 
-        public int TransformTicks => def.defName == "AoOniInfectionZombie" ? 90000 : 180000;
+        public int TransformTicks
+        {
+            get
+            {
+                if (def.defName == "AoOniInfectionZombie")
+                    return 90000;   // 1.5 days
+                if (def.defName == "AoOniInfectionFast")
+                    return 10000;   // 4 hours
+                return 180000;      // 3 days
+            }
+        }
 
         // Hidden until diagnosed by the surgical test
         public override bool Visible => diagnosed;

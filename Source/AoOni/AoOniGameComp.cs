@@ -15,6 +15,8 @@ namespace AoOni
             public int specialNext;      // generic 2500-tick abilities
             public int spiderNext;       // 10s web
             public int amoebaNext;
+            public int batNext;
+            public Pawn batTarget;
             public int fuwattyPhase;     // 0 moving, 1 paused-waiting-for-dash
             public int fuwattyDashAt;
             public float fuwattyDist;    // cells moved since last dash
@@ -22,22 +24,273 @@ namespace AoOni
         }
 
         private int ticks;
+        private static int ticksStatic;
         private Sustainer musicSustainer;
-        private readonly Dictionary<Thing, OniState> states = new Dictionary<Thing, OniState>();
+        private static readonly Dictionary<Thing, OniState> states = new Dictionary<Thing, OniState>();
 
-        public AoOniGameComp(Game game) { }
+        private class GasZone
+        {
+            public IntVec3 center;
+            public float radius;
+            public int expiryTick;
+        }
+
+        private static readonly List<GasZone> gasZones = new List<GasZone>();
+
+        public AoOniGameComp(Game game)
+        {
+            gasZones.Clear();
+        }
+
+        // ============ Blueberry gas (dying plumpy oni) ============
+
+        public static void SpawnBerryGas(Map map, IntVec3 cell)
+        {
+            gasZones.Add(new GasZone { center = cell, radius = 4.5f, expiryTick = Find.TickManager.TicksGame + 1800 });
+
+            var moteDef = DefDatabase<ThingDef>.GetNamed("Mote_AoOniGas", false);
+            if (moteDef == null)
+                return;
+
+            for (int i = 0; i < 10; i++)
+            {
+                var cell2 = cell.RandomAdjacentCell8Way();
+                for (int j = 0; j < 3; j++)
+                    cell2 = cell2.RandomAdjacentCell8Way();
+                if (!cell2.InBounds(map) || !cell2.Walkable(map))
+                    continue;
+
+                var mote = (MoteThrown)ThingMaker.MakeThing(moteDef);
+                mote.exactPosition = cell2.ToVector3Shifted() + new Vector3(Rand.Range(-0.3f, 0.3f), 0f, Rand.Range(-0.3f, 0.3f));
+                float ang = Rand.Range(0f, 360f) * Mathf.Deg2Rad;
+                mote.Velocity = new Vector3(Mathf.Sin(ang), 0f, Mathf.Cos(ang)) * Rand.Range(0.08f, 0.3f);
+                GenSpawn.Spawn(mote, cell2, map, WipeMode.Vanish);
+            }
+        }
+
+        private static void GasTick()
+        {
+            if (gasZones.Count == 0)
+                return;
+
+            int now = Find.TickManager.TicksGame;
+            for (int i = gasZones.Count - 1; i >= 0; i--)
+            {
+                if (gasZones[i].expiryTick <= now)
+                {
+                    gasZones.RemoveAt(i);
+                    continue;
+                }
+
+                foreach (var map in Current.Game.Maps)
+                {
+                    foreach (var pawn in map.mapPawns.AllPawnsSpawned)
+                    {
+                        if (pawn.Dead || pawn.Downed || Oni.IsOni(pawn))
+                            continue;
+                        if (pawn.Position.InHorDistOf(gasZones[i].center, gasZones[i].radius))
+                            ApplyBerryGas(pawn, 0.10f);
+                    }
+                }
+            }
+        }
+
+        private static void ApplyBerryGas(Pawn pawn, float amount)
+        {
+            var def = DefDatabase<HediffDef>.GetNamed("AoOniBerryGas", false);
+            if (def == null)
+                return;
+            var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(def);
+            if (hediff == null)
+            {
+                hediff = HediffMaker.MakeHediff(def, pawn);
+                pawn.health.AddHediff(hediff);
+            }
+            hediff.Severity = Mathf.Min(1f, hediff.Severity + amount);
+        }
+
+        // Severe blueberry gas exposure can develop into an Oni infection
+        // with the same probability curve as lung rot.
+        private static void BerryInfectionTick()
+        {
+            var gasDef = DefDatabase<HediffDef>.GetNamed("AoOniBerryGas", false);
+            var infectionDef = DefDatabase<HediffDef>.GetNamed("AoOniInfection", false);
+            if (gasDef == null || infectionDef == null)
+                return;
+
+            foreach (var map in Current.Game.Maps)
+            {
+                foreach (var pawn in map.mapPawns.AllPawnsSpawned)
+                {
+                    if (pawn.Dead || pawn.Downed || Oni.IsOni(pawn))
+                        continue;
+                    var gas = pawn.health.hediffSet.GetFirstHediffOfDef(gasDef);
+                    if (gas == null || gas.Severity < 0.5f)
+                        continue;
+
+                    // vanilla lung rot MTB curve: (0.5 -> 8 days) .. (1.0 -> 0.5 days)
+                    float mtbDays = 8f - 7.5f * Mathf.Clamp01((gas.Severity - 0.5f) / 0.5f);
+                    if (Rand.MTBEventOccurs(mtbDays, GenDate.TicksPerDay, 600) && Oni.GetInfection(pawn) == null)
+                    {
+                        pawn.health.AddHediff(HediffMaker.MakeHediff(infectionDef, pawn));
+                        Log.Message("[AoOni] " + pawn.LabelShortCap + " infected by blueberry gas exposure");
+                    }
+                }
+            }
+        }
+
+        // ============ Hundred eyes oni: shared vision + invisibility detection ============
+
+        private static void HundredEyeTick()
+        {
+            foreach (var map in Current.Game.Maps)
+            {
+                var pawns = map.mapPawns.AllPawnsSpawned;
+                foreach (var eye in pawns)
+                {
+                    if (eye.def.defName != "AoOni_HundredEyeOni" || eye.Downed || eye.Dead)
+                        continue;
+
+                    // Reveal psychologically invisible pawns (sightstealers, revenants...)
+                    foreach (var other in pawns)
+                    {
+                        if (other == eye || other.Dead || !other.Spawned)
+                            continue;
+                        if (!InvisibilityUtility.IsPsychologicallyInvisible(other))
+                            continue;
+                        if (other.Position.InHorDistOf(eye.Position, 35f) &&
+                            GenSight.LineOfSight(eye.Position, other.Position, map))
+                        {
+                            other.GetInvisibilityComp()?.BecomeVisible(true);
+                        }
+                    }
+
+                    // Share its sight with other onis
+                    var target = eye.mindState?.enemyTarget;
+                    if (target != null && !target.Destroyed)
+                    {
+                        foreach (var other in pawns)
+                        {
+                            if (other == eye || !Oni.IsOni(other) || other.Downed || other.Dead)
+                                continue;
+                            if (other.mindState != null && other.mindState.enemyTarget == null &&
+                                other.Position.InHorDistOf(eye.Position, 60f))
+                            {
+                                other.mindState.enemyTarget = target;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // ============ Bat oni: hunts wild animals in peaceful times ============
+
+        private static void BatTick()
+        {
+            foreach (var map in Current.Game.Maps)
+            {
+                var pawns = map.mapPawns.AllPawnsSpawned;
+                foreach (var bat in pawns)
+                {
+                    if (bat.def.defName != "AoOni_BatOni" || bat.Downed || bat.Dead || bat.Destroyed)
+                        continue;
+
+                    var st = GetState(bat);
+
+                    // Skip while fighting
+                    var enemy = bat.mindState?.enemyTarget;
+                    if (enemy != null && !enemy.Destroyed)
+                        continue;
+
+                    if (st.batTarget == null)
+                    {
+                        if (ticksStatic < st.batNext)
+                            continue;
+                        st.batNext = ticksStatic + 2400;
+                        if (!Rand.Chance(0.30f))
+                            continue;
+
+                        Pawn prey = null;
+                        float best = float.MaxValue;
+                        foreach (var other in pawns)
+                        {
+                            if (other == bat || other.Downed || other.Dead)
+                                continue;
+                            if (!other.RaceProps.Animal || other.Faction != null)
+                                continue;
+                            float d = other.Position.DistanceToSquared(bat.Position);
+                            if (d < best && d <= 40f * 40f)
+                            {
+                                best = d;
+                                prey = other;
+                            }
+                        }
+                        if (prey == null)
+                            continue;
+                        st.batTarget = prey;
+                    }
+
+                    var prey2 = st.batTarget;
+                    if (prey2 == null || prey2.Dead || prey2.Destroyed || !prey2.Spawned)
+                    {
+                        st.batTarget = null;
+                        continue;
+                    }
+
+                    if (bat.Position.AdjacentTo(prey2.Position))
+                    {
+                        prey2.TakeDamage(new DamageInfo(DamageDefOf.Bite, Rand.Range(8, 12), 0.3f, -1f, bat));
+                        if (!prey2.Dead && !prey2.Destroyed)
+                        {
+                            var fastDef = DefDatabase<HediffDef>.GetNamed("AoOniInfectionFast", false);
+                            if (fastDef != null && Oni.GetInfection(prey2) == null)
+                                prey2.health.AddHediff(HediffMaker.MakeHediff(fastDef, prey2));
+                        }
+                        st.batTarget = null;
+                    }
+                    else if (bat.Position.InHorDistOf(prey2.Position, 45f))
+                    {
+                        // keep chasing
+                        var cell = CellFinder.RandomClosewalkCellNear(prey2.Position, map, 1);
+                        if (cell.IsValid)
+                        {
+                            var job = JobMaker.MakeJob(JobDefOf.Goto, cell);
+                            job.expiryInterval = 600;
+                            job.checkOverrideOnExpire = true;
+                            bat.jobs.TryTakeOrderedJob(job, Verse.AI.JobTag.Misc);
+                        }
+                    }
+                    else
+                    {
+                        st.batTarget = null;
+                    }
+                }
+            }
+        }
 
         public override void ExposeData() { }
 
         public override void GameComponentTick()
         {
             ticks++;
+            ticksStatic = ticks;
             if (ticks % 30 == 0)
                 FuwattyTick();
             if (ticks % 60 == 0)
                 AmoebaTick();
+            if (ticks % 600 == 0)
+                BerryInfectionTick();
             if (ticks % 250 != 0)
+            {
+                GasTick();
+                HundredEyeTick();
+                BatTick();
                 return;
+            }
+            GasTick();
+            HundredEyeTick();
+            BatTick();
 
             foreach (var map in Current.Game.Maps)
             {
@@ -343,11 +596,11 @@ namespace AoOni
             }
         }
 
-        private OniState GetState(Pawn pawn)
+        private static OniState GetState(Thing pawn)
         {
             if (!states.TryGetValue(pawn, out var st))
             {
-                st = new OniState { specialNext = ticks + Rand.Range(0, 2000), spiderNext = ticks + 600, amoebaNext = ticks + 300 };
+                st = new OniState { specialNext = ticksStatic + Rand.Range(0, 2000), spiderNext = ticksStatic + 600, amoebaNext = ticksStatic + 300 };
                 states[pawn] = st;
             }
             return st;
@@ -371,8 +624,10 @@ namespace AoOni
 
             if (anyActive)
             {
-                // Keep vanilla (Anomaly) music silent while the horror theme plays
-                Find.MusicManagerPlay.ForceSilenceFor(6f);
+                // Keep vanilla (Anomaly) music silent while the horror theme plays.
+                // preventDangerTransition is required, otherwise the danger-music
+                // transition overrides our silence window while the oni is attacking.
+                Find.MusicManagerPlay.ForceFadeoutAndSilenceFor(8f, 2f, true);
             }
 
             if (anyActive && (musicSustainer == null || musicSustainer.Ended))

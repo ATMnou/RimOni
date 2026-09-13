@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Blueberry gas exposure: like rot stink exposure, but can develop into an Oni infection -->
+  <HediffDef>
+    <defName>AoOniBerryGas</defName>
+    <label>blueberry gas exposure</label>
+    <description>Aftereffects of exposure to the sweet purple gas released by a dying plumpy oni. It clouds the eyes and burns the lungs. Serious exposure carries a chance of Oni infection, as if the gas itself were carrying the demon's seed.\n\nWhen not exposed to the gas, the effect slowly decreases.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <minSeverity>0</minSeverity>
+    <defaultLabelColor>(0.6, 0.3, 0.8)</defaultLabelColor>
+    <initialSeverity>0.001</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <canApplyDodChanceForCapacityChanges>true</canApplyDodChanceForCapacityChanges>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.5</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>slight</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <label>exposed</label>
+        <minSeverity>0.5</minSeverity>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>-0.15</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Fast infection: transforms the victim after 4 hours -->
+  <HediffDef ParentName="AoOniInfectionBase">
+    <defName>AoOniInfectionFast</defName>
+    <label>Ao Oni infection (rabid)</label>
+    <description>A rabid Oni infection delivered by a bat oni's bite. The victim becomes an Oni within hours.</description>
+  </HediffDef>
+
+  <!-- Purple gas puff mote -->
+  <ThingDef ParentName="MoteBase">
+    <defName>Mote_AoOniGas</defName>
+    <label>oni gas</label>
+    <thingClass>MoteThrown</thingClass>
+    <graphicData>
+      <texPath>Things/Mote/AoOniGas</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Mote</shaderType>
+      <drawSize>2.4</drawSize>
+    </graphicData>
+    <altitudeLayer>MetaOverlays</altitudeLayer>
+    <mote>
+      <fadeInTime>0.4</fadeInTime>
+      <solidTime>3.5</solidTime>
+      <fadeOutTime>1.6</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+  <ResearchProjectDef>
+    <defName>AoOniCarefulFishing</defName>
+    <label>careful fishing</label>
+    <description>An entity study of the oni lurking beneath the water surface. Colonists trained in careful fishing will no longer rouse jellyfish or blue shrimp oni while fishing.</description>
+    <tab>Anomaly</tab>
+    <prerequisites>
+      <li>AoOniInfectionTest</li>
+    </prerequisites>
+    <knowledgeCost>10</knowledgeCost>
+    <knowledgeCategory>Basic</knowledgeCategory>
+    <researchViewX>5.00</researchViewX>
+    <researchViewY>5.60</researchViewY>
+  </ResearchProjectDef>
+
+</Defs>

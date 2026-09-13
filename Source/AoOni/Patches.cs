@@ -30,6 +30,12 @@ namespace AoOni
                 dinfo.SetAmount(dinfo.Amount * 2f);
             }
 
+            // Squatto oni: quadruple damage against buildings and walls
+            if (instigator != null && instigator.def.defName == "AoOni_SquattoOni" && __instance is Building)
+            {
+                dinfo.SetAmount(dinfo.Amount * 4f);
+            }
+
             __state = pawn.health.summaryHealth.SummaryHealthPercent;
         }
 
@@ -153,6 +159,11 @@ namespace AoOni
                     Transformer.SpawnOni(map, cell, "AoOni_HunchbackOni", 1);
                 }
 
+                if (__instance.def.defName == "AoOni_PlumpyOni")
+                {
+                    AoOniGameComp.SpawnBerryGas(map, cell);
+                }
+
                 if (__instance.def.defName == "AoOni_MonstrousOni")
                 {
                     // Destroyed monstrous oni leaves its nucleus behind
@@ -230,6 +241,51 @@ namespace AoOni
             catch (Exception e)
             {
                 Log.Error("[AoOni] surgery registration failed: " + e);
+            }
+        }
+    }
+
+
+    // Fishing: jellyfish / blue shrimp oni lurk beneath the surface.
+    // Base 5% chance, reduced to 1% by high artistic skill, removed by the
+    // "careful fishing" research.
+    [HarmonyPatch(typeof(RimWorld.FishingUtility), nameof(RimWorld.FishingUtility.GetNegativeFishingOutcomes))]
+    public static class FishingUtility_AoOniPatch
+    {
+        public static void Postfix(Pawn pawn, List<RimWorld.NegativeFishingOutcomeDef> __result)
+        {
+            try
+            {
+                if (__result == null || pawn == null || pawn.Dead || pawn.Map == null)
+                    return;
+
+                var careful = DefDatabase<ResearchProjectDef>.GetNamed("AoOniCarefulFishing", false);
+                if (careful != null && careful.IsFinished)
+                    return;
+
+                float skill = pawn.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0;
+                float chance = 0.05f - 0.04f * Mathf.Clamp01(skill / 20f);
+                if (!Rand.Chance(chance))
+                    return;
+
+                Map map = pawn.Map;
+                string variant = Rand.Chance(0.5f) ? "AoOni_JellyfishOni" : "AoOni_BlueShrimp";
+                Transformer.SpawnOni(map, pawn.Position, variant, 1);
+
+                foreach (var p in map.mapPawns.AllPawnsSpawned)
+                {
+                    if (Oni.IsOni(p) && p.Position.InHorDistOf(pawn.Position, 8f))
+                        p.stances.stunner.StunFor(300, null);
+                }
+
+                Find.LetterStack.ReceiveLetter(
+                    "AoOni_FishingLetterLabel".Translate(),
+                    "AoOni_FishingLetter".Translate(pawn.Named("PAWN")),
+                    LetterDefOf.ThreatBig, new LookTargets(pawn));
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] fishing patch failed: " + e);
             }
         }
     }
