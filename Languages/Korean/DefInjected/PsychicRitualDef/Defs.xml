@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniReconstitution.label>인류 재구성</AoOniReconstitution.label>
+  <AoOniReconstitution.description>파편 하나를 불사르고 공허의 설계도로부터 정착민을 재구성합니다. 모든 흉터와 질병, 어두운 특성이 지워지며 - 아오오니 감염조차 예외가 아닙니다.
+
+그러나 공허는 위조를 용납하지 않습니다. 도플갱어에게 의식이 실패하면, 본체가 그 자리에서 드러납니다.</AoOniReconstitution.description>
+  <AoOniReconstitution.outcomeDescription>현재 의식 품질로 성공 확률은 {0}입니다. 실패 시 일반 정착민은 소멸하며, 도플갱어는 즉시 변신합니다.</AoOniReconstitution.outcomeDescription>
+</LanguageData>

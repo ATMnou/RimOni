@@ -14,7 +14,7 @@
   <AoOni_EggPlantOni.description>가지처럼 보라빛이 도는 오니. 처치하면 시체가 무더기의 생식자재로 터져 나온다.</AoOni_EggPlantOni.description>
   <AoOni_FlatOni.label>납작 오니</AoOni_FlatOni.label>
   <AoOni_FlatOni.description>종잇장처럼 납작해진 오니. 몹시 연약하지만 납작한 몸 때문에 맞추기가 매우 어렵다.</AoOni_FlatOni.description>
-  <AoOni_Fuwatty.label>자일리톨</AoOni_Fuwatty.label>
+  <AoOni_Fuwatty.label>후왓티</AoOni_Fuwatty.label>
   <AoOni_Fuwatty.description>폭신하고 부드러운 오니. 8칸을 이동하면 1초간 멈췄다가 매우 빠른 속도로 6칸을 직선으로 돌진한다.</AoOni_Fuwatty.description>
   <AoOni_HunchbackOni.label>허리디스크 오니</AoOni_HunchbackOni.label>
   <AoOni_HunchbackOni.description>굽은 등의 얼어붙은 오니. 냉기에 영구히 굳은 몸 때문에 느리지만 절대 멈추지 않는다.</AoOni_HunchbackOni.description>
@@ -36,7 +36,7 @@
   <AoOni_SquattoOni.description>융기하고 웅크린 거구의 오니. 일격의 위력이 어떤 오니보다도 두 배 강하다.</AoOni_SquattoOni.description>
   <AoOni_ZombieOni.label>좀비 오니</AoOni_ZombieOni.label>
   <AoOni_ZombieOni.description>썩은 몸을 끌며 걷는 오니. 병든 물기는 100% 감염을 일으키며 감염 속도도 두 배다. 추운 환경에서는 크게 느려진다.</AoOni_ZombieOni.description>
-  <AoOni_ThousandsHandOni.label>천수 오니</AoOni_ThousandsHandOni.label>
+  <AoOni_ThousandsHandOni.label>천수관음 오니</AoOni_ThousandsHandOni.label>
   <AoOni_ThousandsHandOni.description>무수한 손이 돋아난 오니. 느리고 무겁지만 질긴 살덩이 때문에 죽이기 어렵다.</AoOni_ThousandsHandOni.description>
   <AoOni_BatOni.label>박쥐 오니</AoOni_BatOni.label>
   <AoOni_BatOni.description>날개 달린 민첩한 오니. 연약한 몸은 박쥐처럼 가볍다.</AoOni_BatOni.description>

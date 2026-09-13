@@ -13,4 +13,9 @@
   <AoOni_FishingLetter>{PAWN_nameDef}(이)가 낚시 중에 무언가를 낚았습니다 - 물속에서 보라색 무언가가 솟아올랐습니다!
 
 오니가 몇 초간 얼어 있습니다. 도망칠 기회입니다.</AoOni_FishingLetter>
+  <AoOni_ReconstitutionSuccessLabel>재구성 완료</AoOni_ReconstitutionSuccessLabel>
+  <AoOni_ReconstitutionSuccess>{PAWN_nameDef}의 재구성이 완료되었습니다. 모든 상처와 질병이 지워졌습니다.</AoOni_ReconstitutionSuccess>
+  <AoOni_ReconstitutionFailLabel>재구성 실패</AoOni_ReconstitutionFailLabel>
+  <AoOni_ReconstitutionFail>{PAWN_nameDef}은(는) 공허의 검증을 견디지 못했습니다.</AoOni_ReconstitutionFail>
+  <AoOni_ReconstitutionDoppelgangerFail>{PAWN_nameDef}은(는) 원래 인간이 아니었습니다. 위조가 벗겨져 나갑니다!</AoOni_ReconstitutionDoppelgangerFail>
 </LanguageData>

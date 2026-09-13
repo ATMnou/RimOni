@@ -290,6 +290,90 @@ namespace AoOni
         }
     }
 
+
+    // ============ Doppelganger contamination ============
+
+    // Meals cooked by a doppelganger infect whoever eats them.
+    [HarmonyPatch(typeof(GenRecipe), "PostProcessProduct")]
+    public static class GenRecipe_AoOniTaintPatch
+    {
+        public static void Postfix(Thing __result, Pawn worker)
+        {
+            try
+            {
+                if (__result == null || worker == null || AoOniGameComp.taintedThings == null)
+                    return;
+                if (__result.def.ingestible == null || __result.def.category != ThingCategory.Item)
+                    return;
+                if (Oni.GetDoppelganger(worker) == null)
+                    return;
+
+                AoOniGameComp.taintedThings.Add(__result.thingIDNumber);
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] taint patch failed: " + e);
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(Thing), nameof(Thing.Ingested))]
+    public static class Thing_Ingested_AoOniPatch
+    {
+        public static void Postfix(Thing __instance, Pawn ingester)
+        {
+            try
+            {
+                if (AoOniGameComp.taintedThings == null || ingester == null || ingester.Dead || ingester.Destroyed)
+                    return;
+                if (!AoOniGameComp.taintedThings.Remove(__instance.thingIDNumber))
+                    return;
+                if (Oni.IsOni(ingester) || Oni.GetInfection(ingester) != null)
+                    return;
+
+                var infectionDef = DefDatabase<HediffDef>.GetNamed("AoOniInfection", false);
+                if (infectionDef != null)
+                {
+                    ingester.health.AddHediff(HediffMaker.MakeHediff(infectionDef, ingester));
+                    Log.Message("[AoOni] " + ingester.LabelShortCap + " infected by food cooked by a doppelganger");
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] ingestion patch failed: " + e);
+            }
+        }
+    }
+
+    // Surgeries performed by a doppelganger always infect the patient.
+    [HarmonyPatch(typeof(RecipeWorker), nameof(RecipeWorker.ApplyOnPawn))]
+    public static class RecipeWorker_AoOniPatch
+    {
+        public static void Postfix(Pawn pawn, Pawn billDoer)
+        {
+            try
+            {
+                if (pawn == null || pawn.Dead || pawn.Destroyed || billDoer == null)
+                    return;
+                if (Oni.GetDoppelganger(billDoer) == null)
+                    return;
+                if (Oni.IsOni(pawn) || Oni.GetInfection(pawn) != null)
+                    return;
+
+                var infectionDef = DefDatabase<HediffDef>.GetNamed("AoOniInfection", false);
+                if (infectionDef != null)
+                {
+                    pawn.health.AddHediff(HediffMaker.MakeHediff(infectionDef, pawn));
+                    Log.Message("[AoOni] " + pawn.LabelShortCap + " infected by a surgery performed by a doppelganger");
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] surgery taint patch failed: " + e);
+            }
+        }
+    }
+
     // Register the game component
     [HarmonyPatch(typeof(Game), nameof(Game.InitNewGame))]
     public static class Game_InitNewGame_AoOniPatch

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AoOniReconstitution.label>人類の再構成</AoOniReconstitution.label>
+  <AoOniReconstitution.description>シャードを1つ捧げ、ヴォイドの設計図から入植者を再構成する。すべての傷、病、そして暗い特性が消え去り - 青鬼の感染さえも例外ではない。
+
+だがヴォイドは偽物を許さない。ドッペルゲンガーへの儀式が失敗すれば、本体がその場で現れる。</AoOniReconstitution.description>
+  <AoOniReconstitution.outcomeDescription>現在の儀式の品質で成功率は{0}です。失敗すると一般の入植者は消滅し、ドッペルゲンガーは即座に変身する。</AoOniReconstitution.outcomeDescription>
+</LanguageData>

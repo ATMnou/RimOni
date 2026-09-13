@@ -4,6 +4,7 @@ using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI.Group;
 
 namespace AoOni
 {
@@ -37,6 +38,128 @@ namespace AoOni
                 Messages.Message("AoOni_TestNegative".Translate(pawn.LabelShortCap),
                     pawn, MessageTypeDefOf.PositiveEvent, true);
             }
+        }
+    }
+
+    // ============ Human reconstitution ritual ============
+
+    public class PsychicRitualDef_AoOniReconstitution : PsychicRitualDef_InvocationCircle
+    {
+        public SimpleCurve successChanceFromQualityCurve;
+
+        public override List<PsychicRitualToil> CreateToils(PsychicRitual psychicRitual, PsychicRitualGraph graph)
+        {
+            List<PsychicRitualToil> list = base.CreateToils(psychicRitual, graph);
+            list.Add(new PsychicRitualToil_AoOniReconstitution(TargetRole));
+            return list;
+        }
+
+        public override TaggedString OutcomeDescription(FloatRange qualityRange, string qualityNumber, PsychicRitualRoleAssignments assignments)
+        {
+            return outcomeDescription.Formatted(successChanceFromQualityCurve.Evaluate(qualityRange.min).ToStringPercent());
+        }
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (string item in base.ConfigErrors())
+                yield return item;
+            if (successChanceFromQualityCurve == null)
+                yield return "successChanceFromQualityCurve does not exist";
+        }
+    }
+
+    public class PsychicRitualToil_AoOniReconstitution : PsychicRitualToil
+    {
+        private PsychicRitualRoleDef targetRole;
+
+        public PsychicRitualToil_AoOniReconstitution()
+        {
+        }
+
+        public PsychicRitualToil_AoOniReconstitution(PsychicRitualRoleDef targetRole)
+        {
+            this.targetRole = targetRole;
+        }
+
+        public override void Start(PsychicRitual psychicRitual, PsychicRitualGraph graph)
+        {
+            var def = (PsychicRitualDef_AoOniReconstitution)psychicRitual.def;
+            float chance = def.successChanceFromQualityCurve.Evaluate(psychicRitual.PowerPercent);
+
+            foreach (Pawn pawn in psychicRitual.assignments.AssignedPawns(targetRole))
+                ApplyOutcome(pawn, Rand.Chance(chance));
+        }
+
+        private void ApplyOutcome(Pawn pawn, bool success)
+        {
+            bool doppel = Oni.GetDoppelganger(pawn) != null;
+
+            if (success)
+            {
+                // Remove every bad hediff: wounds, scars, diseases, infection, doppelganger mark
+                List<Hediff> toRemove = new List<Hediff>();
+                foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+                {
+                    if (hediff.def.isBad || hediff is Hediff_AoOniInfection || hediff is Hediff_Doppelganger)
+                        toRemove.Add(hediff);
+                }
+                foreach (Hediff hediff in toRemove)
+                    pawn.health.RemoveHediff(hediff);
+
+                // Remove negative traits
+                List<Trait> traits = new List<Trait>(pawn.story.traits.allTraits);
+                foreach (Trait trait in traits)
+                {
+                    if (trait.Suppressed)
+                        continue;
+                    bool negative = trait.Degree < 0;
+                    if (!negative)
+                    {
+                        TraitDegreeData data = trait.def.DataAtDegree(trait.Degree);
+                        if (data != null && data.statOffsets != null)
+                        {
+                            foreach (StatModifier mod in data.statOffsets)
+                            {
+                                if (mod.stat != null && mod.stat.defName == "Mood" && mod.value < 0)
+                                    negative = true;
+                            }
+                        }
+                    }
+                    if (negative)
+                        pawn.story.traits.RemoveTrait(trait);
+                }
+
+                if (PawnUtility.ShouldSendNotificationAbout(pawn))
+                    Find.LetterStack.ReceiveLetter(
+                        "AoOni_ReconstitutionSuccessLabel".Translate(),
+                        "AoOni_ReconstitutionSuccess".Translate(pawn.Named("PAWN")),
+                        LetterDefOf.PositiveEvent, pawn);
+                Log.Message("[AoOni] " + pawn.LabelShortCap + " was reconstituted" + (doppel ? " (doppelganger reverted)" : ""));
+            }
+            else if (doppel)
+            {
+                // The forgery is torn apart - transform immediately
+                Find.LetterStack.ReceiveLetter(
+                    "AoOni_ReconstitutionFailLabel".Translate(),
+                    "AoOni_ReconstitutionDoppelgangerFail".Translate(pawn.Named("PAWN")),
+                    LetterDefOf.ThreatBig, pawn);
+                Transformer.TransformPawn(pawn);
+            }
+            else
+            {
+                // Normal colonist disintegrates
+                Find.LetterStack.ReceiveLetter(
+                    "AoOni_ReconstitutionFailLabel".Translate(),
+                    "AoOni_ReconstitutionFail".Translate(pawn.Named("PAWN")),
+                    LetterDefOf.ThreatBig, pawn);
+                pawn.Destroy(DestroyMode.Vanish);
+            }
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Defs.Look(ref targetRole, "targetRole");
         }
     }
 

@@ -13,4 +13,9 @@
   <AoOni_FishingLetter>{PAWN_nameDef}が釣り中に何かを釣り上げた - 水中から紫色の何かが飛び出した！
 
 鬼は数秒間硬直している。逃げるチャンスだ。</AoOni_FishingLetter>
+  <AoOni_ReconstitutionSuccessLabel>再構成完了</AoOni_ReconstitutionSuccessLabel>
+  <AoOni_ReconstitutionSuccess>{PAWN_nameDef}の再構成が完了した。すべての傷と病が消え去った。</AoOni_ReconstitutionSuccess>
+  <AoOni_ReconstitutionFailLabel>再構成失敗</AoOni_ReconstitutionFailLabel>
+  <AoOni_ReconstitutionFail>{PAWN_nameDef}はヴォイドの検証に耐えられなかった。</AoOni_ReconstitutionFail>
+  <AoOni_ReconstitutionDoppelgangerFail>{PAWN_nameDef}は最初から人間ではなかった。偽装が剥がれ落ちる！</AoOni_ReconstitutionDoppelgangerFail>
 </LanguageData>

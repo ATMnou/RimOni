@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Human reconstitution: burn a shard to rebuild a colonist.
+       Removes all bad traits, wounds and diseases (incl. oni infection).
+       Failing on a normal colonist destroys them; failing on a doppelganger
+       triggers the transformation immediately. -->
+  <PsychicRitualDef Class="AoOni.PsychicRitualDef_AoOniReconstitution">
+    <defName>AoOniReconstitution</defName>
+    <label>human reconstitution</label>
+    <description>Burn a shard and psychically reconstitute a colonist from the void's blueprints. Every scar, sickness and dark trait is rewritten away - even an oni infection.
+
+But the void does not tolerate forgery: should the ritual fail on a doppelganger, its true form will surface immediately.</description>
+    <researchPrerequisite>AoOniInfectionCure</researchPrerequisite>
+    <outcomeDescription>With the current quality, there's a {0} chance the reconstitution will succeed. A failure disintegrates a normal colonist - and a doppelganger transforms at once.</outcomeDescription>
+    <iconPath>UI/Rituals/Reconstitution</iconPath>
+    <hoursUntilOutcome>6</hoursUntilOutcome>
+    <targetRole>DeathRefusalTarget</targetRole>
+    <requiredOffering>
+      <filter>
+        <thingDefs>
+          <li>Shard</li>
+        </thingDefs>
+      </filter>
+      <count>1</count>
+    </requiredOffering>
+    <cooldownHours>360</cooldownHours>
+    <chanterRole>ChanterAdvanced</chanterRole>
+    <successChanceFromQualityCurve>
+      <points>
+        <li>(0, 0.35)</li>
+        <li>(0.5, 0.70)</li>
+        <li>(0.9, 0.95)</li>
+        <li>(1, 1.0)</li>
+      </points>
+    </successChanceFromQualityCurve>
+  </PsychicRitualDef>
+
+</Defs>

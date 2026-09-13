@@ -13,4 +13,9 @@
   <AoOni_FishingLetter>{PAWN_nameDef}钓鱼时钓到了什么——水中蹿出了一个紫色身影！
 
 鬼僵直了几秒钟。快趁机逃跑。</AoOni_FishingLetter>
+  <AoOni_ReconstitutionSuccessLabel>重构完成</AoOni_ReconstitutionSuccessLabel>
+  <AoOni_ReconstitutionSuccess>{PAWN_nameDef}的重构已完成。所有创伤与疾病均已消除。</AoOni_ReconstitutionSuccess>
+  <AoOni_ReconstitutionFailLabel>重构失败</AoOni_ReconstitutionFailLabel>
+  <AoOni_ReconstitutionFail>{PAWN_nameDef}没能承受住虚空的检验。</AoOni_ReconstitutionFail>
+  <AoOni_ReconstitutionDoppelgangerFail>{PAWN_nameDef}从来都不是人类。伪装崩解了！</AoOni_ReconstitutionDoppelgangerFail>
 </LanguageData>

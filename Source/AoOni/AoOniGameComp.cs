@@ -269,7 +269,16 @@ namespace AoOni
             }
         }
 
-        public override void ExposeData() { }
+        // thingIDNumbers of meals cooked by doppelgangers
+        public static HashSet<int> taintedThings = new HashSet<int>();
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look(ref taintedThings, "taintedThings", LookMode.Value);
+            if (taintedThings == null)
+                taintedThings = new HashSet<int>();
+        }
 
         public override void GameComponentTick()
         {
