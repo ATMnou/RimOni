@@ -12,7 +12,7 @@
       <li>AoOni_AoOni</li>
     </linkedThings>
     <discoveredResearchProjects>
-      <li>AoOniInfectionTest</li>
+      <li>AoOniBasics</li>
     </discoveredResearchProjects>
     <provocationIncidents>
       <li>AoOniRaid</li>
@@ -22,54 +22,29 @@
   </EntityCodexEntryDef>
 
   <ResearchProjectDef>
+    <defName>AoOniBasics</defName>
+    <label>onionomy</label>
+    <description>A first survey of the Ao Oni. Studying this unlocks the entity codex page for the Ao Oni - only variants you have personally encountered will be catalogued.</description>
+    <tab>Anomaly</tab>
+    <knowledgeCost>5</knowledgeCost>
+    <knowledgeCategory>Basic</knowledgeCategory>
+    <researchViewX>3.20</researchViewX>
+    <researchViewY>6.40</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
     <defName>AoOniInfectionTest</defName>
     <label>Ao Oni infection test</label>
-    <description>An entity study of the Ao Oni's infection mechanism. Unlocks a surgical test that reveals whether a person, animal or mechanoid is carrying an Oni infection.</description>
+    <prerequisites>
+      <li>AoOniBasics</li>
+    </prerequisites>
+    <description>An entity study of the Ao Oni's infection mechanism. Surgical inspections can now reveal a hidden Oni infection or a doppelganger in the patient.</description>
     <tab>Anomaly</tab>
     <knowledgeCost>10</knowledgeCost>
     <knowledgeCategory>Basic</knowledgeCategory>
     <researchViewX>4.00</researchViewX>
     <researchViewY>6.40</researchViewY>
   </ResearchProjectDef>
-
-  <RecipeDef>
-    <defName>AoOniInfectionTest</defName>
-    <label>Ao Oni infection test</label>
-    <description>A surgical examination that reveals whether the patient is infected by an Ao Oni.</description>
-    <workerClass>AoOni.RecipeWorker_AoOniTest</workerClass>
-    <jobString>Ao Oni infection test on TargetA.</jobString>
-    <workAmount>2000</workAmount>
-    <hideBodyPartNames>true</hideBodyPartNames>
-    <targetsBodyPart>false</targetsBodyPart>
-    <isViolation>true</isViolation>
-    <anesthetize>true</anesthetize>
-    <surgeryOutcomeEffect IsNull="True" />
-    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
-    <skillRequirements>
-      <Medicine>4</Medicine>
-    </skillRequirements>
-    <researchPrerequisite>
-      <li>AoOniInfectionTest</li>
-    </researchPrerequisite>
-    <recipeUsers>
-      <li>Human</li>
-    </recipeUsers>
-    <ingredients>
-      <li>
-        <filter>
-          <categories>
-            <li>Medicine</li>
-          </categories>
-        </filter>
-        <count>2</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <categories>
-        <li>Medicine</li>
-      </categories>
-    </fixedIngredientFilter>
-  </RecipeDef>
 
   <IncidentDef ParentName="AnomalyIncidentBase">
     <defName>AoOniRaid</defName>
@@ -80,6 +55,7 @@
     <workerClass>AoOni.IncidentWorker_AoOniRaid</workerClass>
     <baseChance>1.2</baseChance>
     <minRefireDays>1</minRefireDays>
+    <minAnomalyThreatLevel>1</minAnomalyThreatLevel>
     <earliestDay>6</earliestDay>
     <category>ThreatSmall</category>
     <letterDef>ThreatBig</letterDef>

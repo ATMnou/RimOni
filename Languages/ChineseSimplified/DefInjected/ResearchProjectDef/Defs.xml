@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <AoOniInfectionTest.label>青鬼感染检查</AoOniInfectionTest.label>
-  <AoOniInfectionTest.description>通过外科检查确认患者是否感染了青鬼。</AoOniInfectionTest.description>
+  <AoOniInfectionTest.description>对青鬼感染机制的实体研究。外科检查现在可以发现患者身上潜伏的鬼化感染或二重身。</AoOniInfectionTest.description>
   <AoOniInfectionTest.jobString>正在对目标A进行青鬼感染检查。</AoOniInfectionTest.jobString>
   <AoOniInfectionCure.label>青鬼治疗</AoOniInfectionCure.label>
   <AoOniInfectionCure.description>对鬼感染的高阶实体研究。解锁在感染完全发作前将感染从患者身上清除的外科手术。需要工业级或更好的药品，草药无法胜任。机械体可通过维修清除感染。</AoOniInfectionCure.description>
   <AoOniCarefulFishing.label>谨慎钓鱼</AoOniCarefulFishing.label>
   <AoOniCarefulFishing.description>对潜伏于水面之下的鬼的实体研究。接受过谨慎钓鱼训练的殖民者钓鱼时不会再惊动水母鬼或蓝虾鬼。</AoOniCarefulFishing.description>
+  <AoOniBasics.label>鬼学</AoOniBasics.label>
+  <AoOniBasics.description>对青鬼的首次实体研究。完成后解锁实体图鉴中的青鬼页面，仅可查看亲自遭遇过的变种。</AoOniBasics.description>
 </LanguageData>

@@ -28,9 +28,77 @@ namespace AoOni
             return pawn?.health?.hediffSet?.GetFirstHediffOfDef(HediffDefOf_AoOni.AoOniDoppelganger) as Hediff_Doppelganger;
         }
 
+        // Codex: track which oni variants the colony has personally encountered
+        private static readonly HashSet<string> seenVariants = new HashSet<string>();
+
+        public static void MarkVariantSeen(string raceDefName)
+        {
+            if (raceDefName == null || !seenVariants.Add(raceDefName))
+                return;
+            try
+            {
+                var entry = DefDatabase<EntityCodexEntryDef>.GetNamed("AoOni", false);
+                if (entry == null)
+                    return;
+
+                // First sighting: reveal the entry (this also unlocks its category),
+                // but only after the "onionomy" research - the codex page shows the
+                // variants encountered so far.
+                var basics = DefDatabase<ResearchProjectDef>.GetNamed("AoOniBasics", false);
+                bool researched = basics != null && basics.IsFinished;
+                if (!codexRevealed && researched)
+                {
+                    Find.EntityCodex.SetDiscovered(entry);
+                    codexRevealed = true;
+                    Log.Message("[AoOni] entity codex page revealed (onionomy complete)");
+                }
+
+                // Track the encountered variant thing for the codex "discovered entities" list
+                var thingDef = DefDatabase<ThingDef>.GetNamed(raceDefName, false);
+                if (thingDef != null && Find.EntityCodex.Discovered(entry))
+                    Find.EntityCodex.SetDiscovered(entry, thingDef);
+
+                if (!researched)
+                    pendingReveal = true;
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] codex discovery failed: " + e);
+            }
+        }
+
+        // Set once the codex page has been revealed
+        private static bool codexRevealed;
+
+        // An oni was seen before the onionomy research; reveal as soon as it finishes
+        private static bool pendingReveal;
+
+        /// <summary>Call when the onionomy research completes: reveals the codex page.</summary>
+        public static void OnBasicsResearched()
+        {
+            if (codexRevealed || !pendingReveal)
+                return;
+            codexRevealed = true;
+            pendingReveal = false;
+            var entry = DefDatabase<EntityCodexEntryDef>.GetNamed("AoOni", false);
+            if (entry != null)
+            {
+                Find.EntityCodex.SetDiscovered(entry);
+                Log.Message("[AoOni] entity codex page revealed (retroactive)");
+            }
+        }
+
+        // All oni events assume the void monolith at level 1+
+        public static bool MonolithActive()
+        {
+            return !ModsConfig.AnomalyActive || Find.Anomaly.HighestLevelReached >= 1;
+        }
+
         public static void ApplyInfection(Pawn victim, Pawn attacker)
         {
             if (victim == null || victim.Dead || victim.Destroyed)
+                return;
+            if (!MonolithActive())
                 return;
             if (IsOni(victim))
                 return;
@@ -151,6 +219,9 @@ namespace AoOni
                 var spawnCell = CellFinder.RandomClosewalkCellNear(cell, map, 3);
                 GenSpawn.Spawn(pawn, spawnCell.IsValid ? spawnCell : cell, map, Rot4.Random, WipeMode.Vanish, false);
             }
+
+            if (count > 0)
+                Oni.MarkVariantSeen(raceDefName);
         }
 
         public static void TransformPawn(Pawn victim)

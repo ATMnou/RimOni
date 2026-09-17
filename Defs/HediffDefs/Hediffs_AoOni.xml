@@ -12,13 +12,18 @@
     <everCurableByItem>false</everCurableByItem>
     <initialSeverity>0.01</initialSeverity>
     <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="AoOni.HediffCompProperties_SurgeryInspectable_AoOni" />
+    </comps>
     <stages>
       <li>
         <label>latent</label>
+        <becomeVisible>false</becomeVisible>
       </li>
       <li>
         <label>changing</label>
         <minSeverity>0.95</minSeverity>
+        <becomeVisible>false</becomeVisible>
       </li>
     </stages>
   </HediffDef>
@@ -63,9 +68,13 @@
     <isBad>true</isBad>
     <everCurableByItem>false</everCurableByItem>
     <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="AoOni.HediffCompProperties_SurgeryInspectable_AoOni" />
+    </comps>
     <stages>
       <li>
         <label>subtle</label>
+        <becomeVisible>false</becomeVisible>
       </li>
     </stages>
   </HediffDef>

@@ -41,6 +41,7 @@
     <questScriptDef>CreepJoinerArrival_AoOni</questScriptDef>
     <earliestDay>10</earliestDay>
     <baseChance>0.08</baseChance>
+    <minAnomalyThreatLevel>1</minAnomalyThreatLevel>
     <minRefireDays>60</minRefireDays>
     <requireColonistsPresent>True</requireColonistsPresent>
     <refireCheckTags>

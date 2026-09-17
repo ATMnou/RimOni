@@ -72,7 +72,7 @@
     <description>An entity study of the oni lurking beneath the water surface. Colonists trained in careful fishing will no longer rouse jellyfish or blue shrimp oni while fishing.</description>
     <tab>Anomaly</tab>
     <prerequisites>
-      <li>AoOniInfectionTest</li>
+      <li>AoOniBasics</li>
     </prerequisites>
     <knowledgeCost>10</knowledgeCost>
     <knowledgeCategory>Basic</knowledgeCategory>

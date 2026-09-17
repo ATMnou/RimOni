@@ -9,6 +9,7 @@
     <statBases>
       <ComfyTemperatureMin>-40</ComfyTemperatureMin>
       <ComfyTemperatureMax>70</ComfyTemperatureMax>
+      <HSAU_SanctusSensitivity MayRequire="baskerville.hellsingarmsultimate" Inherit="False">1</HSAU_SanctusSensitivity>
       <PsychicSensitivity>1</PsychicSensitivity>
       <ArmorRating_Sharp>0.10</ArmorRating_Sharp>
       <ArmorRating_Blunt>0.05</ArmorRating_Blunt>

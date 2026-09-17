@@ -8,47 +8,64 @@ using Verse.AI.Group;
 
 namespace AoOni
 {
-    // Surgical test: reveals whether the patient carries an Oni infection.
-    public class RecipeWorker_AoOniTest : Recipe_Surgery
+    // ============ Vanilla surgical inspection: detects oni infection & doppelganger ============
+
+    public class HediffCompProperties_SurgeryInspectable_AoOni : HediffCompProperties_SurgeryInspectable
     {
-        public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
+        public HediffCompProperties_SurgeryInspectable_AoOni()
         {
-            if (pawn == null || pawn.Dead)
-                return;
+            compClass = typeof(HediffComp_SurgeryInspectable_AoOni);
+        }
+    }
 
-            var infection = Oni.GetInfection(pawn);
-            var doppel = Oni.GetDoppelganger(pawn);
+    public class HediffComp_SurgeryInspectable_AoOni : HediffComp_SurgeryInspectable
+    {
+        private static bool ResearchDone =>
+            DefDatabase<ResearchProjectDef>.GetNamed("AoOniInfectionTest", false)?.IsFinished ?? false;
 
-            if (infection != null)
-            {
+        public override SurgicalInspectionOutcome DoSurgicalInspection(Pawn surgeon)
+        {
+            // Requires the "Ao Oni infection test" research
+            if (!ResearchDone)
+                return SurgicalInspectionOutcome.Nothing;
+
+            Pawn patient = parent.pawn;
+            if (patient == null)
+                return SurgicalInspectionOutcome.Nothing;
+
+            bool doppel = parent.def.defName == "AoOniDoppelganger";
+
+            if (parent is Hediff_AoOniInfection infection)
                 infection.Diagnosed = true;
-                if (doppel != null)
-                    doppel.Diagnosed = true;
-                Messages.Message("AoOni_TestPositive".Translate(pawn.LabelShortCap),
-                    pawn, MessageTypeDefOf.ThreatBig, true);
-            }
-            else if (doppel != null)
+
+            if (doppel)
             {
-                doppel.Diagnosed = true;
+                if (patient.health.hediffSet.GetFirstHediffOfDef(HediffDefOf_AoOni.AoOniDoppelganger) is Hediff_Doppelganger dg)
+                    dg.Diagnosed = true;
 
                 // A diagnosed doppelganger develops its own oni infection (1.5 days) - not hidden
                 var zombieDef = DefDatabase<HediffDef>.GetNamed("AoOniInfectionZombie", false);
-                if (zombieDef != null && Oni.GetInfection(pawn) == null)
+                if (zombieDef != null && Oni.GetInfection(patient) == null)
                 {
-                    var inf = (Hediff_AoOniInfection)HediffMaker.MakeHediff(zombieDef, pawn);
+                    var inf = (Hediff_AoOniInfection)HediffMaker.MakeHediff(zombieDef, patient);
                     inf.Diagnosed = true;
-                    pawn.health.AddHediff(inf);
-                    Log.Message("[AoOni] diagnosed doppelganger " + pawn.LabelShortCap + " has developed an oni infection");
+                    patient.health.AddHediff(inf);
+                    Log.Message("[AoOni] diagnosed doppelganger " + patient.LabelShortCap + " has developed an oni infection");
                 }
+            }
 
-                Messages.Message("AoOni_TestPositive".Translate(pawn.LabelShortCap),
-                    pawn, MessageTypeDefOf.ThreatBig, true);
-            }
-            else
-            {
-                Messages.Message("AoOni_TestNegative".Translate(pawn.LabelShortCap),
-                    pawn, MessageTypeDefOf.PositiveEvent, true);
-            }
+            Messages.Message("AoOni_TestPositive".Translate(patient.LabelShortCap),
+                patient, MessageTypeDefOf.ThreatBig, true);
+            Log.Message("[AoOni] surgical inspection detected " + parent.def.defName + " on " + patient.LabelShortCap);
+
+            // We sent our own letter; suppress the vanilla one. The outer
+            // Pawn.DoSurgicalInspection still calls SetVisible for this outcome.
+            return SurgicalInspectionOutcome.DetectedNoLetter;
+        }
+
+        public override void DoSurgicalInspectionVisible(Pawn surgeon)
+        {
+            // Already discovered: no repeat report
         }
     }
 

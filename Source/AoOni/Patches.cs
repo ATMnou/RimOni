@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
@@ -61,12 +62,19 @@ namespace AoOni
         }
     }
 
-    // Doppelganger: colonists returning from a caravan alone or as an unarmed pair
-    // have a 20% chance of being replaced.
+    // Doppelganger: colonists returning from a caravan alone or as an "unarmed" group
+    // have a chance of being replaced. Only caravans arriving on foot count - drop pods
+    // and shuttles are exempt.
+    // "Unarmed" means: no colonist carrying a weapon, no armed escorts. Biotech non-combat
+    // mechs count as unarmed; any other mech counts as armed. Animals are armed if they
+    // have attack (release) or obedience training.
     [HarmonyPatch]
     public static class Caravan_AoOniDoppelPatch
     {
         public static bool prepared;
+
+        // "Slept during the journey" is evaluated once per return event
+        private static bool appliedSleepBonus;
 
         public static MethodBase TargetMethod()
         {
@@ -89,22 +97,77 @@ namespace AoOni
                 if (caravan == null || caravan.Faction != Faction.OfPlayer)
                     return;
 
-                var members = caravan.PawnsListForReading.Where(p => p.IsColonist && p.RaceProps.Humanlike && !p.Destroyed).ToList();
-                if (members.Count == 0 || members.Count > 2)
-                    return;
-                if (members.Count == 2 && members.Any(m => m.equipment?.Primary != null))
-                    return;
-
-                if (!Rand.Chance(0.20f))
-                    return;
-
-                var victim = members.RandomElement();
-                victim.health.AddHediff(HediffMaker.MakeHediff(HediffDefOf_AoOni.AoOniDoppelganger, victim));
+                var all = caravan.PawnsListForReading.Where(p => !p.Destroyed).ToList();
+                TryDoppel(all, all.Count);
             }
             catch (Exception e)
             {
                 Log.Error("[AoOni] doppelganger patch failed: " + e);
             }
+        }
+
+        public static void TryDoppel(IEnumerable<Pawn> pawns, int totalEntries)
+        {
+            appliedSleepBonus = false;
+
+            // Requires the void monolith at level 1+
+            if (ModsConfig.AnomalyActive && Find.Anomaly.HighestLevelReached < 1)
+                return;
+            var members = pawns.Where(p => p.IsColonist && p.RaceProps.Humanlike && !p.Destroyed).ToList();
+            if (members.Count == 0 || members.Count > 2)
+                return;
+            if (totalEntries > 2)
+                return;
+            // Anyone "armed" cancels the strike
+            foreach (var m in pawns)
+            {
+                if (m.RaceProps.Humanlike && m.equipment?.Primary != null)
+                    return;
+                if (m.RaceProps.IsMechanoid && m.RaceProps.FleshType != FleshTypeDefOf.Mechanoid)
+                    return;
+                if (IsArmedMech(m) || IsArmedAnimal(m))
+                    return;
+            }
+
+            float chance = 0.20f;
+            // If anyone actually slept at some point during the journey: +10%.
+            // Awake() is false for sleeping pawns (drowsy-but-awake pawns don't count).
+            // The bonus only applies once per return event.
+            if (!appliedSleepBonus && pawns.Any(p => !p.Awake()))
+            {
+                appliedSleepBonus = true;
+                chance += 0.10f;
+            }
+
+            if (!Rand.Chance(chance))
+                return;
+
+            var victim = members.RandomElement();
+            victim.health.AddHediff(HediffMaker.MakeHediff(HediffDefOf_AoOni.AoOniDoppelganger, victim));
+            Log.Message("[AoOni] a doppelganger may have infiltrated with the returning group");
+        }
+
+        // Biotech colony mechs: non-fighter kinds (lifter, constructoid, fabricor, agrihand...)
+        // count as unarmed; everything else counts as armed.
+        private static bool IsArmedMech(Pawn p)
+        {
+            if (!p.RaceProps.IsMechanoid)
+                return false;
+            var kind = p.kindDef;
+            if (kind != null && !kind.isFighter)
+                return false;
+            return true;
+        }
+
+        private static bool IsArmedAnimal(Pawn p)
+        {
+            if (!p.RaceProps.Animal || p.training == null)
+                return false;
+            if (p.training.HasLearned(TrainableDefOf.Release))
+                return true;
+            if (p.training.HasLearned(TrainableDefOf.Obedience))
+                return true;
+            return false;
         }
     }
 
@@ -241,9 +304,8 @@ namespace AoOni
         {
             try
             {
-                var test = DefDatabase<RecipeDef>.GetNamed("AoOniInfectionTest", false);
                 var cure = DefDatabase<RecipeDef>.GetNamed("AoOniCure", false);
-                if (test == null || cure == null)
+                if (cure == null)
                     return;
 
                 int n = 0;
@@ -254,13 +316,11 @@ namespace AoOni
                     n++;
                     if (def.recipes == null)
                         def.recipes = new List<RecipeDef>();
-                    if (!def.recipes.Contains(test))
-                        def.recipes.Add(test);
                     if (!def.recipes.Contains(cure))
                         def.recipes.Add(cure);
                     AccessTools.Field(typeof(ThingDef), "allRecipesCached")?.SetValue(def, null);
                 }
-                Log.Message($"[AoOni] registered infection test/cure surgeries on {n} pawn races");
+                Log.Message($"[AoOni] registered the cure surgery on {n} pawn races");
             }
             catch (Exception e)
             {
@@ -281,6 +341,10 @@ namespace AoOni
             try
             {
                 if (__result == null || pawn == null || pawn.Dead || pawn.Map == null)
+                    return;
+
+                // Requires the void monolith at level 1+
+                if (ModsConfig.AnomalyActive && Find.Anomaly.HighestLevelReached < 1)
                     return;
 
                 var careful = DefDatabase<ResearchProjectDef>.GetNamed("AoOniCarefulFishing", false);
@@ -395,6 +459,217 @@ namespace AoOni
             {
                 Log.Error("[AoOni] surgery taint patch failed: " + e);
             }
+        }
+    }
+
+    // Reveal the oni codex page once the "onionomy" research completes
+    [HarmonyPatch(typeof(RimWorld.ResearchManager), nameof(RimWorld.ResearchManager.FinishProject))]
+    public static class ResearchManager_AoOniPatch
+    {
+        public static void Postfix(ResearchProjectDef proj)
+        {
+            try
+            {
+                if (proj != null && proj.defName == "AoOniBasics")
+                    Oni.OnBasicsResearched();
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] research finish patch failed: " + e);
+            }
+        }
+    }
+
+
+    // ============ Vanilla/DLC items vs oni infection ============
+
+    public static class AoOniCures
+    {
+        // Remove an oni infection (and its "changing" marker) from a pawn
+        public static void CureInfection(Pawn pawn, string cause)
+        {
+            var infection = Oni.GetInfection(pawn);
+            if (infection == null)
+                return;
+            pawn.health.RemoveHediff(infection);
+            var changing = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf_AoOni.AoOniChanging);
+            if (changing != null)
+                pawn.health.RemoveHediff(changing);
+            Log.Message("[AoOni] " + pawn.LabelShortCap + " cured of oni infection by " + cause);
+        }
+
+        public static bool HasInfection(Pawn pawn)
+        {
+            return Oni.GetInfection(pawn) != null;
+        }
+    }
+
+    // Healer mech serum: heals the worst health condition - the oni infection counts.
+    [HarmonyPatch(typeof(RimWorld.CompUseEffect_FixWorstHealthCondition), "DoEffect")]
+    public static class HealerSerum_AoOniPatch
+    {
+        public static void Postfix(Pawn usedBy)
+        {
+            try
+            {
+                if (usedBy != null && !usedBy.Dead && !usedBy.Destroyed)
+                    AoOniCures.CureInfection(usedBy, "healer mech serum");
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] healer serum patch failed: " + e);
+            }
+        }
+    }
+
+    // Unnatural healing (Anomaly psycast): heals the worst health condition - the
+    // oni infection counts. The ability resolves through HealthUtility.FixWorstHealthCondition.
+    [HarmonyPatch(typeof(Verse.HealthUtility), nameof(Verse.HealthUtility.FixWorstHealthCondition))]
+    public static class UnnaturalHealing_AoOniPatch
+    {
+        public static void Postfix(Pawn pawn)
+        {
+            try
+            {
+                if (pawn != null && !pawn.Dead && !pawn.Destroyed)
+                    AoOniCures.CureInfection(pawn, "unnatural healing");
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] unnatural healing patch failed: " + e);
+            }
+        }
+    }
+
+    // Luciferium: while the high is active, the oni infection cannot progress -
+    // and an existing infection is purged. Mechanoid infections are unaffected
+    // (mechs don't metabolize mechanites this way).
+    [HarmonyPatch(typeof(Hediff), nameof(Hediff.Tick))]
+    public static class Luciferium_AoOniPatch
+    {
+        public static void Postfix(Hediff __instance)
+        {
+            try
+            {
+                Pawn pawn = __instance.pawn;
+                if (pawn == null || pawn.Dead || pawn.Destroyed)
+                    return;
+                if (__instance.def.defName != "LuciferiumHigh")
+                    return;
+                if (pawn.RaceProps.IsMechanoid)
+                    return;
+
+                var infection = Oni.GetInfection(pawn);
+                if (infection == null)
+                {
+                    // No infection: nothing to do (immunity is implicit - the infection
+                    // would be purged the moment it appears, see below)
+                    return;
+                }
+
+                // Purge existing infection
+                AoOniCures.CureInfection(pawn, "luciferium");
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] luciferium patch failed: " + e);
+            }
+        }
+    }
+
+    // New infections while on luciferium are purged the moment they are applied.
+    [HarmonyPatch(typeof(Pawn_HealthTracker), nameof(Pawn_HealthTracker.AddHediff), new[]
+        { typeof(Hediff), typeof(BodyPartRecord), typeof(DamageInfo?), typeof(DamageWorker.DamageResult) })]
+    public static class HealthTracker_AoOniPatch
+    {
+        private static bool inPatch;
+
+        public static void Postfix(Hediff hediff, Pawn ___pawn)
+        {
+            try
+            {
+                if (inPatch || hediff == null || ___pawn == null || ___pawn.Dead || ___pawn.Destroyed)
+                    return;
+                if (!(___pawn.health.hediffSet.GetFirstHediffOfDef(HediffDef.Named("LuciferiumHigh")) is Hediff_High luci) || luci.Severity < 0.3f)
+                    return;
+                if (!(___pawn.RaceProps.IsMechanoid))
+                {
+                    if (hediff is Hediff_AoOniInfection && !(hediff is Hediff_Doppelganger))
+                    {
+                        inPatch = true;
+                        try
+                        {
+                            ___pawn.health.RemoveHediff(hediff);
+                            Log.Message("[AoOni] " + ___pawn.LabelShortCap + "'s luciferium mechanites repelled an oni infection");
+                        }
+                        finally
+                        {
+                            inPatch = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                inPatch = false;
+                Log.Error("[AoOni] health tracker patch failed: " + e);
+            }
+        }
+    }
+
+
+    // Colony mechs have a null skill tracker, but vanilla JobDriver_OperateScanner
+    // calls pawn.skills.Learn unconditionally. Other mods (e.g. Pioneer) let worker
+    // mechs scan, so guard the tick: replace the skills field load with a null-safe
+    // getter and the Learn callvirt with a null-safe wrapper.
+    [HarmonyPatch]
+    public static class JobDriver_OperateScanner_AoOniPatch
+    {
+        public static Pawn_SkillTracker GetSkillsOrNull(Pawn pawn)
+        {
+            return pawn != null ? pawn.skills : null;
+        }
+
+        public static void LearnSafe(Pawn_SkillTracker tracker, SkillDef def, float xp, bool direct, bool ignoreLearnRate)
+        {
+            tracker?.Learn(def, xp, direct, ignoreLearnRate);
+        }
+
+        private static MethodBase TargetMethod()
+        {
+            var inner = AccessTools.Inner(typeof(JobDriver_OperateScanner), "<>c__DisplayClass1_0");
+            var lambda = AccessTools.Method(inner, "<MakeNewToils>b__1");
+            if (lambda != null)
+                return lambda;
+            // Fall back to MakeNewToils: the transpiler below no-ops on it.
+            return AccessTools.Method(typeof(JobDriver_OperateScanner), "MakeNewToils");
+        }
+
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var codes = instructions.ToList();
+            var skillsField = AccessTools.Field(typeof(Pawn), "skills");
+            var learnMethod = AccessTools.Method(typeof(Pawn_SkillTracker), "Learn");
+            var getSkills = AccessTools.Method(typeof(JobDriver_OperateScanner_AoOniPatch), nameof(GetSkillsOrNull));
+            var learnSafe = AccessTools.Method(typeof(JobDriver_OperateScanner_AoOniPatch), nameof(LearnSafe));
+
+            bool replacedField = false;
+            for (int i = 0; i < codes.Count; i++)
+            {
+                if (!replacedField && codes[i].opcode == OpCodes.Ldfld && Equals(codes[i].operand, skillsField))
+                {
+                    codes[i].opcode = OpCodes.Call;
+                    codes[i].operand = getSkills;
+                    replacedField = true;
+                }
+                else if (replacedField && codes[i].opcode == OpCodes.Callvirt && Equals(codes[i].operand, learnMethod))
+                {
+                    codes[i].opcode = OpCodes.Call;
+                    codes[i].operand = learnSafe;
+                    break;
+                }
+            }
+            return codes;
         }
     }
 
