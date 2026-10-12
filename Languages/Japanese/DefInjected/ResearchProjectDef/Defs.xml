@@ -5,6 +5,8 @@
   <AoOniInfectionTest.jobString>対象Aを青鬼の感染検査中。</AoOniInfectionTest.jobString>
   <AoOniInfectionCure.label>青鬼の治療</AoOniInfectionCure.label>
   <AoOniInfectionCure.description>鬼の感染に関する高度な実体研究。感染が完全に進行する前に、生きた患者から感染を取り除く外科処置が解除される。工業用医薬品以上が必要で、ハーブ医薬品では足りない。メカノイドは修理によって感染を排除できる。</AoOniInfectionCure.description>
+  <AoOniDisposalAcceptance.label>感染者の処分の受容</AoOniDisposalAcceptance.label>
+  <AoOniDisposalAcceptance.description>鬼ではなく入植者たちの心に関する研究。入植地は感染者の処分を受け入れることを学ぶ。外科検査で青鬼の感染が確認された入植者を追放したり処刑したりして排除しても、誰も悲しまなくなる。</AoOniDisposalAcceptance.description>
   <AoOniCarefulFishing.label>慎重な釣り</AoOniCarefulFishing.label>
   <AoOniCarefulFishing.description>水面下に潜む鬼に関する実体研究。慎重な釣りの訓練を受けた入植者は、釣り中にクラゲ鬼やシュリンプ鬼を驚かせない。</AoOniCarefulFishing.description>
   <AoOniBasics.label>オニ学</AoOniBasics.label>

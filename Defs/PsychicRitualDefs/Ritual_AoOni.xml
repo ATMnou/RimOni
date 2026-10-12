@@ -2,13 +2,15 @@
 <Defs>
 
   <!-- Human reconstitution: burn a shard to rebuild a colonist.
-       Removes all bad traits, wounds and diseases (incl. oni infection).
+       Removes all bad traits, wounds and diseases (incl. oni infection and
+       creepjoiner downsides). While the ritual channels, oni infections carried
+       by the invoker, target or chanters make no progress.
        Failing on a normal colonist destroys them; failing on a doppelganger
        triggers the transformation immediately. -->
   <PsychicRitualDef Class="AoOni.PsychicRitualDef_AoOniReconstitution">
     <defName>AoOniReconstitution</defName>
     <label>human reconstitution</label>
-    <description>Burn a shard and psychically reconstitute a colonist from the void's blueprints. Every scar, sickness and dark trait is rewritten away - even an oni infection.
+    <description>Burn a shard and psychically reconstitute a colonist from the void's blueprints. Every scar, sickness and dark trait is rewritten away - even an oni infection or a creepjoiner's curse. For as long as the rite lasts, its power holds still any oni infection carried by the invoker, the target or the chanters.
 
 But the void does not tolerate forgery: should the ritual fail on a doppelganger, its true form will surface immediately.</description>
     <researchPrerequisite>AoOniInfectionCure</researchPrerequisite>
@@ -24,7 +26,7 @@ But the void does not tolerate forgery: should the ritual fail on a doppelganger
       </filter>
       <count>1</count>
     </requiredOffering>
-    <cooldownHours>360</cooldownHours>
+    <cooldownHours>96</cooldownHours>
     <chanterRole>ChanterAdvanced</chanterRole>
     <successChanceFromQualityCurve>
       <points>

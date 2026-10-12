@@ -46,6 +46,20 @@
     <researchViewY>6.40</researchViewY>
   </ResearchProjectDef>
 
+  <ResearchProjectDef>
+    <defName>AoOniDisposalAcceptance</defName>
+    <label>acceptance of the infected</label>
+    <prerequisites>
+      <li>AoOniInfectionTest</li>
+    </prerequisites>
+    <description>A study of the colonists' hearts rather than of the Oni itself. The colony learns to accept the removal of the infected: banishing, executing or otherwise disposing of a colonist whose Oni infection has been confirmed by a surgical inspection causes no distress to anyone.</description>
+    <tab>Anomaly</tab>
+    <knowledgeCost>15</knowledgeCost>
+    <knowledgeCategory>Basic</knowledgeCategory>
+    <researchViewX>4.00</researchViewX>
+    <researchViewY>7.20</researchViewY>
+  </ResearchProjectDef>
+
   <IncidentDef ParentName="AnomalyIncidentBase">
     <defName>AoOniRaid</defName>
     <label>oni attack</label>

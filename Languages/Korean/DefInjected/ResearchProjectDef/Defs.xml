@@ -4,6 +4,8 @@
   <AoOniInfectionTest.description>아오오니의 감염 메커니즘에 대한 실체 연구. 외과 검사로 환자에게 숨어 있는 오니 감염이나 도플갱어를 발견할 수 있게 됩니다.</AoOniInfectionTest.description>
   <AoOniInfectionCure.label>아오오니 치료</AoOniInfectionCure.label>
   <AoOniInfectionCure.description>오니 감염에 대한 고도의 실체 연구. 감염이 완전히 진행되기 전에 환자에서 감염을 제거하는 외과 시술이 해금됩니다. 생약으로는 부족하며 공업 의약품 이상이 필요합니다. 메카노이드는 수리 과정에서 감염을 제거할 수 있습니다.</AoOniInfectionCure.description>
+  <AoOniDisposalAcceptance.label>감염자 처리 수용</AoOniDisposalAcceptance.label>
+  <AoOniDisposalAcceptance.description>오니가 아닌 정착민들의 마음에 대한 연구. 정착지는 감염자의 처분을 받아들이는 법을 익힙니다. 외과 검사로 아오오니 감염이 확인된 정착민을 추방하거나 처형하는 등 스스로 제거하더라도 아무도 슬퍼하지 않습니다.</AoOniDisposalAcceptance.description>
   <AoOniCarefulFishing.label>조심스러운 낚시</AoOniCarefulFishing.label>
   <AoOniCarefulFishing.description>수면 아래 잠복하는 오니에 대한 실체 연구. 조심스러운 낚시 훈련을 마친 정착민은 낚시 중 해파리/새우 오니를 놀라게 하지 않는다.</AoOniCarefulFishing.description>
   <AoOniBasics.label>오니학</AoOniBasics.label>

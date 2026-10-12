@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
+using System;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
@@ -40,6 +41,38 @@ namespace AoOni
         public AoOniGameComp(Game game)
         {
             gasZones.Clear();
+            Instance = this;
+        }
+
+        // Heal the codex page for saves made before the base-oni registration fix:
+        // once onionomy is researched and the entry is revealed, make sure the linked
+        // base Ao Oni thing is registered as discovered.
+        private bool codexHealed;
+
+        private void EnsureCodexState()
+        {
+            if (codexHealed)
+                return;
+            try
+            {
+                var basics = DefDatabase<ResearchProjectDef>.GetNamed("AoOniBasics", false);
+                if (basics == null || !basics.IsFinished)
+                    return;
+                var entry = DefDatabase<EntityCodexEntryDef>.GetNamed("AoOni", false);
+                if (entry == null || !Find.EntityCodex.Discovered(entry))
+                    return;
+                var baseThing = DefDatabase<ThingDef>.GetNamed("AoOni_AoOni", false);
+                if (baseThing != null && !Find.EntityCodex.Discovered(baseThing))
+                {
+                    Find.EntityCodex.SetDiscovered(entry, baseThing);
+                    Log.Message("[AoOni] codex base oni registered (save heal)");
+                }
+                codexHealed = true;
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] codex heal failed: " + e);
+            }
         }
 
         // ============ Blueberry gas (dying plumpy oni) ============
@@ -240,9 +273,19 @@ namespace AoOni
 
                     if (bat.Position.AdjacentTo(prey2.Position))
                     {
-                        prey2.TakeDamage(new DamageInfo(DamageDefOf.Bite, Rand.Range(8, 12), 0.3f, -1f, bat));
+                        // A 1-damage nip, tended instantly at perfect quality: the bite
+                        // exists only to pass on the infection, never to wound
+                        List<Hediff> before = prey2.health.hediffSet.hediffs.ToList();
+                        prey2.TakeDamage(new DamageInfo(DamageDefOf.Bite, 1f, 0.3f, -1f, bat));
                         if (!prey2.Dead && !prey2.Destroyed)
                         {
+                            foreach (Hediff hediff in prey2.health.hediffSet.hediffs)
+                            {
+                                if (before.Contains(hediff) || !(hediff is Hediff_Injury injury))
+                                    continue;
+                                injury.TryGetComp<HediffComp_TendDuration>()?.CompTended(1.25f, 1f, 1);
+                            }
+
                             var fastDef = DefDatabase<HediffDef>.GetNamed("AoOniInfectionFast", false);
                             if (fastDef != null && Oni.GetInfection(prey2) == null)
                                 prey2.health.AddHediff(HediffMaker.MakeHediff(fastDef, prey2));
@@ -274,6 +317,17 @@ namespace AoOni
 
         private bool medfordWarned;
 
+        // Outsiders (visitors, traders, raiders...) found carrying an infection are
+        // treated as if they caught it 0~1 days ago, so they never transform on arrival
+        private readonly HashSet<int> registeredInfections = new HashSet<int>();
+
+        // Oni variants encountered this save (persisted, replayed onto the codex after load)
+        public List<string> seenVariantsSaved = new List<string>();
+
+        private bool seenVariantsReplayed;
+
+        public static AoOniGameComp Instance;
+
         // Medford mode compatibility warning (once per save)
         private static bool IsMedfordInstalled()
         {
@@ -293,10 +347,21 @@ namespace AoOni
             if (taintedThings == null)
                 taintedThings = new HashSet<int>();
             Scribe_Values.Look(ref medfordWarned, "medfordWarned", false);
+            Scribe_Collections.Look(ref seenVariantsSaved, "seenVariantsSaved", LookMode.Value);
+            if (seenVariantsSaved == null)
+                seenVariantsSaved = new List<string>();
         }
 
         public override void GameComponentTick()
         {
+            if (!seenVariantsReplayed && Current.ProgramState == ProgramState.Playing && seenVariantsSaved.Count > 0)
+            {
+                // Re-link variants encountered before this session onto the codex page
+                seenVariantsReplayed = true;
+                foreach (var name in seenVariantsSaved.ToList())
+                    Oni.MarkVariantSeen(name);
+            }
+
             if (!medfordWarned && Current.ProgramState == ProgramState.Playing && IsMedfordInstalled())
             {
                 medfordWarned = true;
@@ -323,6 +388,7 @@ namespace AoOni
             GasTick();
             HundredEyeTick();
             BatTick();
+            EnsureCodexState();
 
             foreach (var map in Current.Game.Maps)
             {
@@ -338,6 +404,23 @@ namespace AoOni
                     var infection = Oni.GetInfection(pawn);
                     if (infection != null)
                     {
+                        // First time we see an outsider with an infection: re-roll its
+                        // progress to 0~1 days so arriving infected don't transform instantly
+                        if (!registeredInfections.Contains(pawn.thingIDNumber))
+                        {
+                            registeredInfections.Add(pawn.thingIDNumber);
+                            if (!pawn.IsColonist && pawn.Faction != Faction.OfPlayer &&
+                                pawn.RaceProps.Humanlike && !Oni.IsOni(pawn))
+                            {
+                                int cap = Rand.Range(0, 60000);
+                                if (infection.ageTicks > cap)
+                                {
+                                    infection.ageTicks = cap;
+                                    Log.Message("[AoOni] " + pawn.LabelShortCap + " arrived carrying an oni infection (progress reset to 0~1 days)");
+                                }
+                            }
+                        }
+
                         if (infection.ageTicks >= infection.TransformTicks || infection.Severity >= 1f)
                         {
                             Transformer.TransformPawn(pawn);

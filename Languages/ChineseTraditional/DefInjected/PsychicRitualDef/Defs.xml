@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <AoOniReconstitution.label>人類重構</AoOniReconstitution.label>
-  <AoOniReconstitution.description>獻祭一枚碎片，以虛空的藍圖重構一名殖民者。所有傷痕、疾病與陰暗特質都將被抹去——連青鬼感染也不例外。
+  <AoOniReconstitution.description>獻祭一枚碎片，以虛空的藍圖重構一名殖民者。所有傷痕、疾病與陰暗特質都將被抹去——連青鬼感染或怪異入住者的詛咒也不例外。在儀式進行的期間，主祭者、目標與唱詩者身上的鬼化感染都會被虛空之力暫時壓制。
 
 但虛空不容偽造。若對二重身的重構失敗，其本體將立刻顯現。</AoOniReconstitution.description>
   <AoOniReconstitution.outcomeDescription>以目前的儀式品質，成功率為{0}。失敗時普通殖民者會消散，而二重身會立刻變身。</AoOniReconstitution.outcomeDescription>

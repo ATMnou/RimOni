@@ -23,6 +23,13 @@ namespace AoOni
                 ?.OfType<Hediff_AoOniInfection>().FirstOrDefault();
         }
 
+        // True when an oni infection has been revealed by the surgical inspection test
+        public static bool HasDiagnosedInfection(Pawn pawn)
+        {
+            return pawn?.health?.hediffSet?.hediffs
+                ?.OfType<Hediff_AoOniInfection>().Any(h => h.Diagnosed) ?? false;
+        }
+
         public static Hediff_Doppelganger GetDoppelganger(Pawn pawn)
         {
             return pawn?.health?.hediffSet?.GetFirstHediffOfDef(HediffDefOf_AoOni.AoOniDoppelganger) as Hediff_Doppelganger;
@@ -49,6 +56,11 @@ namespace AoOni
                 if (!codexRevealed && researched)
                 {
                     Find.EntityCodex.SetDiscovered(entry);
+                    // The page links the base Ao Oni thing - register it so the
+                    // codex list doesn't show it as "undiscovered"
+                    var baseThing = DefDatabase<ThingDef>.GetNamed("AoOni_AoOni", false);
+                    if (baseThing != null)
+                        Find.EntityCodex.SetDiscovered(entry, baseThing);
                     codexRevealed = true;
                     Log.Message("[AoOni] entity codex page revealed (onionomy complete)");
                 }
@@ -56,7 +68,18 @@ namespace AoOni
                 // Track the encountered variant thing for the codex "discovered entities" list
                 var thingDef = DefDatabase<ThingDef>.GetNamed(raceDefName, false);
                 if (thingDef != null && Find.EntityCodex.Discovered(entry))
+                {
                     Find.EntityCodex.SetDiscovered(entry, thingDef);
+                    // Show encountered variants on the page itself
+                    if (entry.linkedThings == null)
+                        entry.linkedThings = new List<ThingDef>();
+                    if (!entry.linkedThings.Contains(thingDef))
+                        entry.linkedThings.Add(thingDef);
+                }
+
+                // Persist what we've seen so it survives a save/reload
+                if (AoOniGameComp.Instance != null && !AoOniGameComp.Instance.seenVariantsSaved.Contains(raceDefName))
+                    AoOniGameComp.Instance.seenVariantsSaved.Add(raceDefName);
 
                 if (!researched)
                     pendingReveal = true;
@@ -84,6 +107,9 @@ namespace AoOni
             if (entry != null)
             {
                 Find.EntityCodex.SetDiscovered(entry);
+                var baseThing = DefDatabase<ThingDef>.GetNamed("AoOni_AoOni", false);
+                if (baseThing != null)
+                    Find.EntityCodex.SetDiscovered(entry, baseThing);
                 Log.Message("[AoOni] entity codex page revealed (retroactive)");
             }
         }

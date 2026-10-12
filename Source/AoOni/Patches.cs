@@ -296,6 +296,28 @@ namespace AoOni
         }
     }
 
+    // An infected mech with no physical injuries is not "repairable" in vanilla terms,
+    // so the repair job never runs and the purge above never fires. Count an oni
+    // infection as a repairable condition.
+    [HarmonyPatch(typeof(RimWorld.MechRepairUtility), nameof(RimWorld.MechRepairUtility.CanRepair))]
+    public static class MechRepair_CanRepair_AoOniPatch
+    {
+        public static void Postfix(Pawn mech, ref bool __result)
+        {
+            try
+            {
+                if (__result || mech == null || mech.Dead || mech.Destroyed)
+                    return;
+                if (Oni.GetInfection(mech) != null)
+                    __result = true;
+            }
+            catch (Exception e)
+            {
+                Log.Error("[AoOni] CanRepair patch failed: " + e);
+            }
+        }
+    }
+
     // Register the infection test / cure surgeries on every pawn race
     [HarmonyPatch(typeof(PlayDataLoader), nameof(PlayDataLoader.LoadAllPlayData))]
     public static class PlayDataLoader_AoOniPatch
@@ -477,6 +499,76 @@ namespace AoOni
             {
                 Log.Error("[AoOni] research finish patch failed: " + e);
             }
+        }
+    }
+
+
+    // ============ Human reconstitution ritual ============
+
+    // While the reconstitution ritual channels (its 6 hour duration), oni infections
+    // carried by the invoker, the target or the chanters make no progress.
+    [HarmonyPatch(typeof(Verse.AI.Group.PsychicRitualToil_InvokeHorax), nameof(Verse.AI.Group.PsychicRitualToil_InvokeHorax.Tick))]
+    public static class PsychicRitualInvoke_Tick_AoOniPatch
+    {
+        public static void Postfix(Verse.AI.Group.PsychicRitual psychicRitual)
+        {
+            RitualInfectionHold.Tick(psychicRitual);
+        }
+    }
+
+    // Release the held infections once the channel ends (completed, interrupted or canceled)
+    [HarmonyPatch(typeof(Verse.AI.Group.PsychicRitualToil_InvokeHorax), nameof(Verse.AI.Group.PsychicRitualToil_InvokeHorax.End))]
+    public static class PsychicRitualInvoke_End_AoOniPatch
+    {
+        public static void Postfix(Verse.AI.Group.PsychicRitual psychicRitual)
+        {
+            RitualInfectionHold.End(psychicRitual);
+        }
+    }
+
+
+    // ============ Disposal of the infected (research: acceptance of the infected) ============
+
+    // Banishing, executing, euthanizing or otherwise removing a pawn whose oni
+    // infection has been confirmed by the surgical inspection no longer causes any
+    // distress to the colony - provided the research has been completed.
+    public static class InfectedDisposal
+    {
+        public static bool Accepted(Pawn victim)
+        {
+            if (victim == null || !victim.RaceProps.Humanlike)
+                return false;
+            var research = DefDatabase<ResearchProjectDef>.GetNamed("AoOniDisposalAcceptance", false);
+            if (research == null || !research.IsFinished)
+                return false;
+            return Oni.HasDiagnosedInfection(victim);
+        }
+    }
+
+    // Executions and euthanasia funnel through this single method: skipping it drops
+    // the execution history events entirely, so no vanilla or Ideology precept
+    // thought (KnowColonistExecuted and friends) can be gained.
+    [HarmonyPatch(typeof(ThoughtUtility), nameof(ThoughtUtility.GiveThoughtsForPawnExecuted))]
+    public static class ExecutedThoughts_AoOniPatch
+    {
+        public static bool Prefix(Pawn victim)
+        {
+            return !InfectedDisposal.Accepted(victim);
+        }
+    }
+
+    // Banishments give their mood thoughts through TryGiveThoughts; only the
+    // banishment kinds are suppressed - death thoughts keep working as usual.
+    [HarmonyPatch(typeof(PawnDiedOrDownedThoughtsUtility), nameof(PawnDiedOrDownedThoughtsUtility.TryGiveThoughts),
+        new[] { typeof(Pawn), typeof(DamageInfo?), typeof(PawnDiedOrDownedThoughtsKind) })]
+    public static class BanishedThoughts_AoOniPatch
+    {
+        public static bool Prefix(Pawn victim, PawnDiedOrDownedThoughtsKind thoughtsKind)
+        {
+            if (thoughtsKind != PawnDiedOrDownedThoughtsKind.Banished &&
+                thoughtsKind != PawnDiedOrDownedThoughtsKind.BanishedToDie)
+                return true;
+            return !InfectedDisposal.Accepted(victim);
         }
     }
 

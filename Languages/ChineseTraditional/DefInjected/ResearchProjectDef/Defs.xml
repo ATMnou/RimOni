@@ -5,6 +5,8 @@
   <AoOniInfectionTest.jobString>正在對目標A進行青鬼感染檢查。</AoOniInfectionTest.jobString>
   <AoOniInfectionCure.label>青鬼治療</AoOniInfectionCure.label>
   <AoOniInfectionCure.description>對鬼感染的高階實體研究。解鎖在感染完全發作前將感染從患者身上清除的外科手術。需要工業級或更好的藥品，草藥無法勝任。機械體可透過維修清除感染。</AoOniInfectionCure.description>
+  <AoOniDisposalAcceptance.label>接受感染者處置</AoOniDisposalAcceptance.label>
+  <AoOniDisposalAcceptance.description>一項針對殖民者內心而非鬼本身的研究。殖民地學會了接受對感染者的處置：流放、處決或以其他方式清除一名經外科檢查確認青鬼感染的殖民者時，不會再有人為此感到難過。</AoOniDisposalAcceptance.description>
   <AoOniCarefulFishing.label>謹慎釣魚</AoOniCarefulFishing.label>
   <AoOniCarefulFishing.description>對潛伏於水面之下的鬼的實體研究。接受過謹慎釣魚訓練的殖民者釣魚時不會再驚動水母鬼或藍蝦鬼。</AoOniCarefulFishing.description>
   <AoOniBasics.label>鬼學</AoOniBasics.label>
